@@ -3,1227 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GOSRESALE — мини-курс по ИИ и заработку на контенте</title>
-  <meta name="description" content="Мини-курс от GOSRESALE: как использовать ИИ для контента, TikTok, Telegram, монетизации и личного проекта." />
+  <title>GOSRESALE — мини-курс по ИИ</title>
+  <meta name="description" content="Мини-курс от GOSRESALE: ИИ, контент, TikTok, Telegram, упаковка и монетизация." />
   <meta property="og:title" content="GOSRESALE — мини-курс по ИИ" />
-  <meta property="og:description" content="Освой ИИ-инструменты, контент, упаковку и монетизацию. Стартовый мини-курс для тех, кто хочет делать результат в интернете." />
+  <meta property="og:description" content="Научись использовать ИИ для контента, упаковки, Telegram и первых продаж." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#39ff9a" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #050706;
-      --bg2: #07120d;
-      --panel: rgba(255, 255, 255, 0.065);
-      --panel2: rgba(255, 255, 255, 0.1);
-      --text: #f4fff8;
-      --muted: #a7b7ad;
-      --line: rgba(255, 255, 255, 0.13);
-      --green: #39ff9a;
-      --green2: #b7ff55;
-      --cyan: #5df4ff;
-      --yellow: #ffe86b;
-      --red: #ff5b6f;
-      --dark: #07110c;
-      --radius: 28px;
-      --shadow: 0 28px 90px rgba(0, 0, 0, 0.5);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 14% 8%, rgba(57, 255, 154, 0.18), transparent 34%),
-        radial-gradient(circle at 88% 10%, rgba(93, 244, 255, 0.14), transparent 32%),
-        radial-gradient(circle at 50% 90%, rgba(183, 255, 85, 0.1), transparent 35%),
-        linear-gradient(180deg, #050706 0%, #07120d 48%, #030503 100%);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-      background-size: 44px 44px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,0.7), transparent 85%);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button, input, textarea, select {
-      font-family: inherit;
-    }
-
-    .container {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .top-banner {
-      background: linear-gradient(90deg, rgba(57,255,154,0.16), rgba(93,244,255,0.12));
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      color: #dffff0;
-      font-size: 13px;
-      font-weight: 800;
-      text-align: center;
-      padding: 10px 16px;
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(5, 7, 6, 0.76);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(18px);
-    }
-
-    .nav-inner {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 22px;
-      font-weight: 950;
-      letter-spacing: -0.06em;
-    }
-
-    .logo-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 15px;
-      display: grid;
-      place-items: center;
-      background:
-        linear-gradient(135deg, var(--green), var(--green2));
-      color: #06100a;
-      box-shadow: 0 0 40px rgba(57,255,154,0.28);
-      font-weight: 950;
-    }
-
-    .logo small {
-      display: block;
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 750;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .btn {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.07);
-      color: var(--text);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 48px;
-      padding: 13px 18px;
-      border-radius: 999px;
-      font-weight: 900;
-      cursor: pointer;
-      transition: 0.25s ease;
-      white-space: nowrap;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.11);
-    }
-
-    .btn-primary {
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--green), var(--green2));
-      color: #06100a;
-      box-shadow: 0 18px 48px rgba(57, 255, 154, 0.22);
-    }
-
-    .btn-primary:hover {
-      box-shadow: 0 22px 70px rgba(57, 255, 154, 0.32);
-    }
-
-    .btn-telegram {
-      border-color: rgba(93,244,255,0.28);
-      background: rgba(93,244,255,0.09);
-    }
-
-    .mobile-toggle {
-      display: none;
-      width: 46px;
-      height: 46px;
-      border-radius: 15px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .hero {
-      padding: 82px 0 58px;
-      position: relative;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      align-items: center;
-      gap: 44px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 9px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(57,255,154,0.24);
-      background: rgba(57,255,154,0.08);
-      color: #d7ffe8;
-      font-size: 13px;
-      font-weight: 900;
-      margin-bottom: 22px;
-    }
-
-    .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 0 8px rgba(57,255,154,0.11);
-    }
-
-    h1 {
-      font-size: clamp(42px, 7vw, 82px);
-      line-height: 0.94;
-      letter-spacing: -0.08em;
-      margin-bottom: 24px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(135deg, #ffffff, var(--green), var(--cyan));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      color: var(--muted);
-      max-width: 650px;
-      font-size: 18px;
-      line-height: 1.72;
-      margin-bottom: 28px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 13px;
-      margin-bottom: 32px;
-    }
-
-    .trust-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      max-width: 660px;
-    }
-
-    .trust-card {
-      padding: 17px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.055);
-    }
-
-    .trust-card strong {
-      display: block;
-      font-size: 24px;
-      letter-spacing: -0.05em;
-      margin-bottom: 5px;
-    }
-
-    .trust-card span {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.45;
-    }
-
-    .course-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 36px;
-      padding: 24px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background:
-        radial-gradient(circle at 25% 15%, rgba(57,255,154,0.18), transparent 35%),
-        linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.045));
-      box-shadow: var(--shadow);
-    }
-
-    .course-card::after {
-      content: "AI";
-      position: absolute;
-      right: -22px;
-      top: -36px;
-      font-size: 150px;
-      font-weight: 950;
-      letter-spacing: -0.1em;
-      color: rgba(255,255,255,0.035);
-      pointer-events: none;
-    }
-
-    .terminal-head {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 900;
-      margin-bottom: 18px;
-    }
-
-    .dots {
-      display: flex;
-      gap: 7px;
-    }
-
-    .dots i {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.23);
-    }
-
-    .preview-screen {
-      position: relative;
-      z-index: 2;
-      border-radius: 28px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background:
-        linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px),
-        linear-gradient(145deg, rgba(2,8,5,0.88), rgba(9,28,18,0.84));
-      background-size: 28px 28px, 28px 28px, cover;
-      min-height: 378px;
-      padding: 22px;
-      overflow: hidden;
-    }
-
-    .ai-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      color: #08120c;
-      background: var(--green);
-      font-weight: 950;
-      font-size: 12px;
-      margin-bottom: 18px;
-    }
-
-    .screen-title {
-      font-size: 34px;
-      line-height: 1;
-      letter-spacing: -0.065em;
-      max-width: 330px;
-      margin-bottom: 16px;
-      font-weight: 950;
-    }
-
-    .screen-list {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .screen-list li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      font-weight: 750;
-      font-size: 14px;
-    }
-
-    .screen-list li::before {
-      content: "✓";
-      width: 22px;
-      height: 22px;
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      background: rgba(57,255,154,0.13);
-      color: var(--green);
-      font-size: 13px;
-      font-weight: 950;
-    }
-
-    .floating-panel {
-      position: absolute;
-      right: 20px;
-      bottom: 20px;
-      width: min(245px, calc(100% - 40px));
-      padding: 16px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(5, 7, 6, 0.78);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 18px 50px rgba(0,0,0,0.32);
-    }
-
-    .floating-panel .mini-label {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 850;
-      margin-bottom: 8px;
-    }
-
-    .progress {
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.1);
-      overflow: hidden;
-      margin-bottom: 12px;
-    }
-
-    .progress span {
-      display: block;
-      height: 100%;
-      width: 78%;
-      background: linear-gradient(90deg, var(--green), var(--cyan));
-      border-radius: inherit;
-    }
-
-    .mini-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .mini-stats div {
-      border-radius: 16px;
-      padding: 10px;
-      background: rgba(255,255,255,0.06);
-    }
-
-    .mini-stats strong {
-      display: block;
-      font-size: 18px;
-      letter-spacing: -0.05em;
-    }
-
-    .mini-stats small {
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    section {
-      padding: 72px 0;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 24px;
-      margin-bottom: 30px;
-    }
-
-    .section-title {
-      max-width: 760px;
-    }
-
-    .eyebrow {
-      color: var(--green);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-weight: 950;
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      font-size: clamp(32px, 4.7vw, 56px);
-      line-height: 1;
-      letter-spacing: -0.065em;
-      margin-bottom: 14px;
-    }
-
-    .section-title p {
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.72;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.06);
-      border-radius: var(--radius);
-      box-shadow: 0 18px 58px rgba(0,0,0,0.18);
-    }
-
-    .benefit-card {
-      padding: 26px;
-      transition: 0.25s ease;
-    }
-
-    .benefit-card:hover {
-      transform: translateY(-5px);
-      background: rgba(255,255,255,0.085);
-    }
-
-    .icon-box {
-      width: 54px;
-      height: 54px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 20px;
-      background: rgba(57,255,154,0.1);
-      border: 1px solid rgba(57,255,154,0.22);
-      font-size: 25px;
-    }
-
-    .benefit-card h3,
-    .module-card h3,
-    .pricing-card h3,
-    .contact-card h3,
-    .payment-card h3,
-    .bonus-card h3 {
-      font-size: 22px;
-      letter-spacing: -0.045em;
-      margin-bottom: 11px;
-    }
-
-    .benefit-card p,
-    .module-card p,
-    .pricing-card p,
-    .contact-card p,
-    .payment-card p,
-    .bonus-card p {
-      color: var(--muted);
-      line-height: 1.68;
-      font-size: 15px;
-    }
-
-    .course-path {
-      position: relative;
-      display: grid;
-      gap: 14px;
-    }
-
-    .module-card {
-      display: grid;
-      grid-template-columns: 86px 1fr auto;
-      gap: 18px;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .module-num {
-      width: 68px;
-      height: 68px;
-      border-radius: 22px;
-      display: grid;
-      place-items: center;
-      color: #06100a;
-      background: linear-gradient(135deg, var(--green), var(--green2));
-      font-weight: 950;
-      font-size: 22px;
-      letter-spacing: -0.05em;
-    }
-
-    .module-time {
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.07);
-      color: var(--muted);
-      border: 1px solid rgba(255,255,255,0.1);
-      font-size: 13px;
-      font-weight: 850;
-      white-space: nowrap;
-    }
-
-    .bonus-wrap {
-      padding: 34px;
-      border-radius: 38px;
-      border: 1px solid rgba(57,255,154,0.2);
-      background:
-        radial-gradient(circle at 15% 10%, rgba(57,255,154,0.18), transparent 30%),
-        linear-gradient(135deg, rgba(255,255,255,0.085), rgba(255,255,255,0.04));
-      box-shadow: var(--shadow);
-    }
-
-    .bonus-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 22px;
-      align-items: center;
-    }
-
-    .bonus-card {
-      padding: 20px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(0,0,0,0.18);
-      border-radius: 24px;
-    }
-
-    .bonus-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .bonus-line {
-      display: flex;
-      gap: 12px;
-      padding: 14px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.09);
-      color: var(--muted);
-      line-height: 1.55;
-      font-weight: 650;
-    }
-
-    .bonus-line strong {
-      color: var(--text);
-    }
-
-    .bonus-line::before {
-      content: "✦";
-      color: var(--green);
-      font-weight: 950;
-    }
-
-    .pricing-card {
-      position: relative;
-      overflow: hidden;
-      padding: 26px;
-      display: flex;
-      flex-direction: column;
-      min-height: 100%;
-    }
-
-    .pricing-card.popular {
-      border-color: rgba(57,255,154,0.34);
-      background:
-        radial-gradient(circle at 25% 0%, rgba(57,255,154,0.16), transparent 34%),
-        rgba(255,255,255,0.07);
-    }
-
-    .popular-label {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      padding: 8px 11px;
-      border-radius: 999px;
-      background: var(--green);
-      color: #06100a;
-      font-size: 12px;
-      font-weight: 950;
-    }
-
-    .price {
-      font-size: 44px;
-      letter-spacing: -0.075em;
-      font-weight: 950;
-      margin: 18px 0 8px;
-    }
-
-    .price small {
-      color: var(--muted);
-      font-size: 15px;
-      letter-spacing: -0.02em;
-      font-weight: 800;
-    }
-
-    .pricing-list {
-      list-style: none;
-      display: grid;
-      gap: 11px;
-      margin: 22px 0;
-      color: var(--muted);
-      line-height: 1.48;
-      flex: 1;
-    }
-
-    .pricing-list li {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-    }
-
-    .pricing-list li::before {
-      content: "✓";
-      color: var(--green);
-      font-weight: 950;
-      flex: 0 0 auto;
-    }
-
-    .payment-card {
-      padding: 24px;
-    }
-
-    .payment-methods {
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .payment-method {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 16px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .payment-method strong {
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .payment-method span {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .method-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: rgba(57,255,154,0.1);
-      border: 1px solid rgba(57,255,154,0.2);
-      font-size: 22px;
-    }
-
-    .order-panel {
-      padding: 28px;
-      border-radius: 36px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background:
-        radial-gradient(circle at 10% 0%, rgba(57,255,154,0.13), transparent 32%),
-        rgba(255,255,255,0.06);
-      box-shadow: var(--shadow);
-    }
-
-    .order-form {
-      display: grid;
-      gap: 14px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    label {
-      display: block;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 850;
-      margin-bottom: 8px;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      min-height: 50px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.07);
-      color: var(--text);
-      padding: 14px 15px;
-      outline: none;
-      font-size: 15px;
-      font-weight: 750;
-    }
-
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-      line-height: 1.5;
-    }
-
-    select option {
-      color: #08120c;
-    }
-
-    input:focus, textarea:focus, select:focus {
-      border-color: rgba(57,255,154,0.55);
-      box-shadow: 0 0 0 4px rgba(57,255,154,0.09);
-    }
-
-    .summary-box {
-      padding: 18px;
-      border-radius: 22px;
-      background: rgba(57,255,154,0.08);
-      border: 1px solid rgba(57,255,154,0.18);
-      margin: 4px 0;
-    }
-
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      color: var(--muted);
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .summary-row:last-child {
-      margin-bottom: 0;
-      color: var(--text);
-      font-size: 20px;
-      letter-spacing: -0.04em;
-    }
-
-    .notice {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .success-message {
-      display: none;
-      padding: 16px;
-      border-radius: 20px;
-      background: rgba(57,255,154,0.1);
-      border: 1px solid rgba(57,255,154,0.2);
-      color: #dffff0;
-      line-height: 1.55;
-      font-weight: 750;
-    }
-
-    .success-message.show {
-      display: block;
-    }
-
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .review-card {
-      padding: 24px;
-    }
-
-    .stars {
-      color: var(--yellow);
-      letter-spacing: 2px;
-      margin-bottom: 14px;
-    }
-
-    .review-card p {
-      color: var(--muted);
-      line-height: 1.68;
-      margin-bottom: 18px;
-    }
-
-    .review-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--green), var(--cyan));
-      color: #06100a;
-      font-weight: 950;
-    }
-
-    .review-author strong {
-      display: block;
-      margin-bottom: 3px;
-    }
-
-    .review-author span {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .faq-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .faq-item {
-      overflow: hidden;
-    }
-
-    .faq-question {
-      width: 100%;
-      border: 0;
-      background: transparent;
-      color: var(--text);
-      padding: 22px;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: center;
-      cursor: pointer;
-      text-align: left;
-      font-size: 17px;
-      font-weight: 950;
-      letter-spacing: -0.035em;
-    }
-
-    .faq-question span:last-child {
-      color: var(--green);
-      font-size: 25px;
-      transition: 0.24s ease;
-    }
-
-    .faq-content {
-      display: none;
-      padding: 0 22px 22px;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    .faq-item.active .faq-content {
-      display: block;
-    }
-
-    .faq-item.active .faq-question span:last-child {
-      transform: rotate(45deg);
-    }
-
-    .contact-card {
-      padding: 28px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-card::after {
-      content: "@";
-      position: absolute;
-      right: 20px;
-      bottom: -46px;
-      font-size: 150px;
-      color: rgba(255,255,255,0.035);
-      font-weight: 950;
-    }
-
-    .contact-list {
-      list-style: none;
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .contact-list li {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 16px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.055);
-    }
-
-    .contact-list strong {
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .contact-list span {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-      word-break: break-word;
-    }
-
-    .cta {
-      padding-bottom: 92px;
-    }
-
-    .cta-box {
-      text-align: center;
-      overflow: hidden;
-      position: relative;
-      padding: 48px;
-      border-radius: 44px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background:
-        radial-gradient(circle at 20% 25%, rgba(57,255,154,0.2), transparent 35%),
-        radial-gradient(circle at 85% 50%, rgba(93,244,255,0.14), transparent 30%),
-        linear-gradient(135deg, rgba(255,255,255,0.095), rgba(255,255,255,0.045));
-      box-shadow: var(--shadow);
-    }
-
-    .cta-box h2 {
-      max-width: 820px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cta-box p {
-      color: var(--muted);
-      max-width: 720px;
-      margin: 0 auto 26px;
-      line-height: 1.72;
-    }
-
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding: 28px 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 16px;
-      font-weight: 800;
-    }
-
-    .footer-links a:hover {
-      color: var(--text);
-    }
-
-    .scroll-top {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(5, 7, 6, 0.78);
-      color: var(--green);
-      display: none;
-      place-items: center;
-      cursor: pointer;
-      z-index: 40;
-      backdrop-filter: blur(12px);
-      font-size: 22px;
-      font-weight: 950;
-    }
-
-    .scroll-top.show {
-      display: grid;
-    }
-
-    @media (max-width: 1020px) {
-      .hero-grid,
-      .bonus-grid,
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-
-      .grid-3,
-      .reviews-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .nav-links,
-      .nav-actions {
-        display: none;
-      }
-
-      .mobile-toggle {
-        display: grid;
-        place-items: center;
-      }
-
-      .nav.open .nav-links {
-        position: absolute;
-        left: 16px;
-        right: 16px;
-        top: 82px;
-        display: grid;
-        gap: 4px;
-        padding: 12px;
-        border-radius: 24px;
-        background: rgba(5, 7, 6, 0.97);
-        border: 1px solid var(--line);
-        box-shadow: var(--shadow);
-      }
-
-      .nav.open .nav-links a {
-        padding: 14px;
-        border-radius: 16px;
-      }
-
-      .nav.open .nav-links a:hover {
-        background: rgba(255,255,255,0.07);
-      }
-    }
-
-    @media (max-width: 720px) {
-      .hero {
-        padding-top: 52px;
-      }
-
-      .trust-row,
-      .grid-3,
-      .reviews-grid,
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-actions .btn,
-      .cta-box .btn {
-        width: 100%;
-      }
-
-      .section-head {
-        display: block;
-      }
-
-      .module-card {
-        grid-template-columns: 1fr;
-      }
-
-      .module-time {
-        width: fit-content;
-      }
-
-      .bonus-wrap,
-      .cta-box,
-      .order-panel {
-        padding: 24px;
-        border-radius: 30px;
-      }
-
-      .preview-screen {
-        min-height: 430px;
-      }
-
-      .floating-panel {
-        left: 20px;
-        right: 20px;
-        width: auto;
-      }
-
-      .contact-list li,
-      .payment-method {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .footer-inner {
-        display: grid;
-      }
-    }
-  </style>
+:root{--bg:#050706;--bg2:#07120d;--card:rgba(255,255,255,.07);--card2:rgba(255,255,255,.11);--text:#f4fff8;--muted:#a7b7ad;--line:rgba(255,255,255,.13);--green:#39ff9a;--green2:#b7ff55;--cyan:#5df4ff;--red:#ff5b6f;--yellow:#ffe86b;--shadow:0 24px 80px rgba(0,0,0,.45);--radius:28px}*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{min-height:100vh;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 12% 8%,rgba(57,255,154,.18),transparent 32%),radial-gradient(circle at 86% 0%,rgba(93,244,255,.14),transparent 30%),linear-gradient(180deg,#050706,#07120d 52%,#030503);overflow-x:hidden}body:before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:42px 42px;pointer-events:none;z-index:-1;mask-image:linear-gradient(180deg,rgba(0,0,0,.8),transparent 85%)}a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}.container{width:min(1180px,calc(100% - 32px));margin:0 auto}.btn{border:1px solid var(--line);background:rgba(255,255,255,.075);color:var(--text);min-height:48px;padding:13px 18px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:900;cursor:pointer;transition:.22s;white-space:nowrap}.btn:hover{transform:translateY(-2px);background:var(--card2)}.btn-primary{border-color:transparent;background:linear-gradient(135deg,var(--green),var(--green2));color:#06100a;box-shadow:0 18px 50px rgba(57,255,154,.22)}.btn-cyan{background:rgba(93,244,255,.1);border-color:rgba(93,244,255,.28)}.btn-red{background:rgba(255,91,111,.12);border-color:rgba(255,91,111,.28);color:#ffd7dd}.card{border:1px solid var(--line);background:var(--card);border-radius:var(--radius);box-shadow:0 18px 58px rgba(0,0,0,.16)}.badge{display:inline-flex;align-items:center;gap:10px;padding:9px 14px;border-radius:999px;border:1px solid rgba(57,255,154,.24);background:rgba(57,255,154,.08);color:#d7ffe8;font-size:13px;font-weight:900}.dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 8px rgba(57,255,154,.11)}.gradient-text{background:linear-gradient(135deg,#fff,var(--green),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}section{padding:72px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:30px}.section-title{max-width:760px}.eyebrow{color:var(--green);font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:950;margin-bottom:12px}h1{font-size:clamp(42px,7vw,82px);line-height:.94;letter-spacing:-.08em;margin-bottom:24px}h2{font-size:clamp(32px,4.7vw,56px);line-height:1;letter-spacing:-.065em;margin-bottom:14px}h3{letter-spacing:-.045em}.section-title p,.muted{color:var(--muted);font-size:16px;line-height:1.72}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.top-banner{background:linear-gradient(90deg,rgba(57,255,154,.16),rgba(93,244,255,.12));border-bottom:1px solid rgba(255,255,255,.1);color:#dffff0;font-size:13px;font-weight:800;text-align:center;padding:10px 16px}.nav{position:sticky;top:0;z-index:50;background:rgba(5,7,6,.76);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(18px)}.nav-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:950;letter-spacing:-.06em}.logo-mark{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--green),var(--green2));color:#06100a;box-shadow:0 0 40px rgba(57,255,154,.28)}.logo small{display:block;margin-top:2px;color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase}.nav-links{display:flex;align-items:center;gap:22px;color:var(--muted);font-size:14px;font-weight:750}.nav-links a:hover{color:var(--text)}.nav-actions{display:flex;gap:10px}.mobile-toggle{display:none;width:46px;height:46px;border-radius:15px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--text);font-size:24px;cursor:pointer}.hero{padding:82px 0 58px}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:44px}.hero-subtitle{color:var(--muted);max-width:650px;font-size:18px;line-height:1.72;margin-bottom:28px}.hero-actions{display:flex;flex-wrap:wrap;gap:13px;margin-bottom:32px}.trust-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:660px}.trust-card{padding:17px;border-radius:22px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.055)}.trust-card strong{display:block;font-size:24px;letter-spacing:-.05em;margin-bottom:5px}.trust-card span{color:var(--muted);font-size:13px;font-weight:700;line-height:1.45}.course-card{position:relative;overflow:hidden;border-radius:36px;padding:24px;border:1px solid rgba(255,255,255,.14);background:radial-gradient(circle at 25% 15%,rgba(57,255,154,.18),transparent 35%),linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.045));box-shadow:var(--shadow)}.course-card:after{content:"AI";position:absolute;right:-22px;top:-36px;font-size:150px;font-weight:950;letter-spacing:-.1em;color:rgba(255,255,255,.035)}.terminal-head{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;font-weight:900;margin-bottom:18px}.dots{display:flex;gap:7px}.dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.23)}.preview-screen{position:relative;z-index:2;border-radius:28px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(145deg,rgba(2,8,5,.88),rgba(9,28,18,.84));background-size:28px 28px,28px 28px,cover;min-height:378px;padding:22px;overflow:hidden}.ai-chip{display:inline-flex;padding:9px 12px;border-radius:999px;color:#08120c;background:var(--green);font-weight:950;font-size:12px;margin-bottom:18px}.screen-title{font-size:34px;line-height:1;letter-spacing:-.065em;max-width:330px;margin-bottom:16px;font-weight:950}.screen-list{list-style:none;display:grid;gap:10px;margin-bottom:20px}.screen-list li{display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:750;font-size:14px}.screen-list li:before{content:"✓";width:22px;height:22px;border-radius:8px;display:grid;place-items:center;background:rgba(57,255,154,.13);color:var(--green);font-size:13px;font-weight:950}.benefit-card,.pricing-card,.contact-card,.payment-card,.review-card{padding:26px}.icon-box{width:54px;height:54px;border-radius:18px;display:grid;place-items:center;margin-bottom:20px;background:rgba(57,255,154,.1);border:1px solid rgba(57,255,154,.22);font-size:25px}.benefit-card h3,.pricing-card h3,.contact-card h3,.payment-card h3{font-size:22px;margin-bottom:11px}.benefit-card p,.pricing-card p,.contact-card p,.payment-card p{color:var(--muted);line-height:1.68;font-size:15px}.module-card{display:grid;grid-template-columns:86px 1fr auto;gap:18px;align-items:center;padding:20px}.module-num{width:68px;height:68px;border-radius:22px;display:grid;place-items:center;color:#06100a;background:linear-gradient(135deg,var(--green),var(--green2));font-weight:950;font-size:22px}.module-time{padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.07);color:var(--muted);border:1px solid rgba(255,255,255,.1);font-size:13px;font-weight:850;white-space:nowrap}.price{font-size:44px;letter-spacing:-.075em;font-weight:950;margin:18px 0 8px}.pricing-list,.info-list,.contact-list{list-style:none;display:grid;gap:11px;margin:20px 0;color:var(--muted);line-height:1.5}.pricing-list li,.info-list li{display:flex;gap:10px}.pricing-list li:before,.info-list li:before{content:"✓";color:var(--green);font-weight:950}label{display:block;color:var(--muted);font-size:13px;font-weight:850;margin-bottom:8px}input,textarea,select{width:100%;min-height:50px;border-radius:18px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:var(--text);padding:14px 15px;outline:none;font-size:15px;font-weight:750}textarea{min-height:110px;resize:vertical;line-height:1.5}select option{color:#08120c}input:focus,textarea:focus,select:focus{border-color:rgba(57,255,154,.55);box-shadow:0 0 0 4px rgba(57,255,154,.09)}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.form-row{margin-bottom:14px}.summary-box{padding:18px;border-radius:22px;background:rgba(57,255,154,.08);border:1px solid rgba(57,255,154,.18);margin:4px 0}.summary-row{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-weight:800;margin-bottom:8px}.summary-row:last-child{margin-bottom:0;color:var(--text);font-size:20px;letter-spacing:-.04em}.notice{color:var(--muted);font-size:13px;line-height:1.55}.success-message{display:none;padding:16px;border-radius:20px;background:rgba(57,255,154,.1);border:1px solid rgba(57,255,154,.2);color:#dffff0;line-height:1.55;font-weight:750}.success-message.show{display:block}.payment-methods{display:grid;gap:12px;margin-top:20px}.payment-method{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;border-radius:20px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1)}.method-icon{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;background:rgba(57,255,154,.1);border:1px solid rgba(57,255,154,.2);font-size:22px}.review-author{display:flex;align-items:center;gap:12px;margin-top:18px}.avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--green),var(--cyan));color:#06100a;font-weight:950}.stars{color:var(--yellow);letter-spacing:2px;margin-bottom:14px}.faq-list{display:grid;gap:12px}.faq-item{overflow:hidden}.faq-question{width:100%;border:0;background:transparent;color:var(--text);padding:22px;display:flex;justify-content:space-between;gap:20px;align-items:center;cursor:pointer;text-align:left;font-size:17px;font-weight:950;letter-spacing:-.035em}.faq-question span:last-child{color:var(--green);font-size:25px;transition:.24s}.faq-content{display:none;padding:0 22px 22px;color:var(--muted);line-height:1.7;font-size:15px}.faq-item.active .faq-content{display:block}.faq-item.active .faq-question span:last-child{transform:rotate(45deg)}.cta{padding-bottom:92px}.cta-box{text-align:center;overflow:hidden;position:relative;padding:48px;border-radius:44px;border:1px solid rgba(255,255,255,.14);background:radial-gradient(circle at 20% 25%,rgba(57,255,154,.2),transparent 35%),radial-gradient(circle at 85% 50%,rgba(93,244,255,.14),transparent 30%),linear-gradient(135deg,rgba(255,255,255,.095),rgba(255,255,255,.045));box-shadow:var(--shadow)}.cta-box p{color:var(--muted);max-width:720px;margin:0 auto 26px;line-height:1.72}footer{border-top:1px solid rgba(255,255,255,.1);padding:28px 0;color:var(--muted);font-size:14px}.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px}.footer-links{display:flex;gap:16px;font-weight:800}.loading{opacity:.65}.empty{color:var(--muted);padding:18px;border-radius:20px;border:1px dashed rgba(255,255,255,.18);text-align:center;line-height:1.6;font-weight:700}.toast{position:fixed;right:18px;bottom:18px;max-width:360px;z-index:100;display:none;padding:14px 16px;border-radius:18px;border:1px solid rgba(57,255,154,.22);background:rgba(5,7,6,.92);color:#dffff0;box-shadow:var(--shadow);backdrop-filter:blur(12px);font-weight:800;line-height:1.45}.toast.show{display:block}@media(max-width:1020px){.hero-grid,.grid-2{grid-template-columns:1fr}.grid-3{grid-template-columns:repeat(2,1fr)}.nav-links,.nav-actions{display:none}.mobile-toggle{display:grid;place-items:center}.nav.open .nav-links{position:absolute;left:16px;right:16px;top:82px;display:grid;gap:4px;padding:12px;border-radius:24px;background:rgba(5,7,6,.97);border:1px solid var(--line);box-shadow:var(--shadow)}.nav.open .nav-links a{padding:14px;border-radius:16px}.nav.open .nav-links a:hover{background:rgba(255,255,255,.07)}}@media(max-width:720px){.trust-row,.grid-3,.form-grid{grid-template-columns:1fr}.hero-actions .btn,.cta-box .btn{width:100%}.section-head{display:block}.module-card{grid-template-columns:1fr}.module-time{width:max-content}.cta-box{padding:24px;border-radius:30px}.footer-inner{display:grid}.payment-method{align-items:flex-start;flex-direction:column}}
+</style>
 </head>
 <body>
-  <div class="top-banner">⚡ Мини-курс по ИИ от GOSRESALE — контент, упаковка, TikTok, Telegram и монетизация</div>
+  <div class="top-banner">⚡ Мини-курс по ИИ от GOSRESALE · <a data-channel-link href="https://t.me/gostalanty" target="_blank" rel="noopener">Telegram-канал</a></div>
 
   <header class="nav" id="nav">
     <div class="container nav-inner">
-      <a href="#" class="logo" aria-label="GOSRESALE home">
-        <span class="logo-mark">G</span>
-        <span>GOSRESALE<small>AI MINI COURSE</small></span>
-      </a>
-
-      <nav class="nav-links" aria-label="Основная навигация">
-        <a href="#about">О курсе</a>
-        <a href="#program">Программа</a>
-        <a href="#pricing">Тарифы</a>
-        <a href="#payment">Оплата</a>
-        <a href="#order">Заявка</a>
-        <a href="#contacts">Контакты</a>
+      <a href="#" class="logo"><span class="logo-mark">G</span><span>GOSRESALE<small>AI MINI COURSE</small></span></a>
+      <nav class="nav-links">
+        <a href="#about">О курсе</a><a href="#program">Программа</a><a href="#pricing">Тарифы</a><a href="#payment">Оплата</a><a href="#order">Заявка</a><a href="#contacts">Контакты</a>
       </nav>
-
-      <div class="nav-actions">
-        <a href="https://t.me/whemmel" target="_blank" rel="noopener" class="btn btn-telegram">Telegram</a>
-        <a href="#order" class="btn btn-primary">Записаться</a>
-      </div>
-
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Открыть меню">☰</button>
+      <div class="nav-actions"><a data-channel-link href="https://t.me/gostalanty" target="_blank" rel="noopener" class="btn btn-cyan">Канал</a><a data-support-link href="https://t.me/whemmel" target="_blank" rel="noopener" class="btn">Поддержка</a><a href="#order" class="btn btn-primary">Записаться</a></div>
+      <button class="mobile-toggle" id="mobileToggle">☰</button>
     </div>
   </header>
 
@@ -1231,614 +34,197 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="badge"><span class="dot"></span> Для новичков, контент-мейкеров и тех, кто хочет стартовать в AI</div>
-          <h1>Мини-курс по <span class="gradient-text">ИИ от GOSRESALE</span></h1>
-          <p class="hero-subtitle">
-            Научись использовать искусственный интеллект для контента, идей, упаковки, TikTok, Telegram и первых продаж.
-            Без сложной теории: только понятные действия, шаблоны и практические задания.
-          </p>
-          <div class="hero-actions">
-            <a href="#order" class="btn btn-primary">Оставить заявку</a>
-            <a href="#program" class="btn">Смотреть программу</a>
-            <a href="https://t.me/whemmel" target="_blank" rel="noopener" class="btn btn-telegram">Перейти в Telegram</a>
-          </div>
-
-          <div class="trust-row">
-            <div class="trust-card">
-              <strong>7 дней</strong>
-              <span>короткий формат без воды</span>
-            </div>
-            <div class="trust-card">
-              <strong>20+</strong>
-              <span>промтов, шаблонов и идей</span>
-            </div>
-            <div class="trust-card">
-              <strong>0</strong>
-              <span>обещаний лёгких денег</span>
-            </div>
-          </div>
+          <div class="badge"><span class="dot"></span> Для новичков, авторов и тех, кто хочет стартовать в AI</div>
+          <h1 id="heroTitle">Мини-курс по <span class="gradient-text">ИИ от GOSRESALE</span></h1>
+          <p class="hero-subtitle" id="heroText">Научись использовать искусственный интеллект для контента, идей, упаковки, TikTok, Telegram и первых продаж.</p>
+          <div class="hero-actions"><a href="#order" class="btn btn-primary" id="heroCta">Оставить заявку</a><a href="#program" class="btn">Смотреть программу</a><a data-channel-link href="https://t.me/gostalanty" target="_blank" rel="noopener" class="btn btn-cyan">Перейти в канал</a></div>
+          <div class="trust-row"><div class="trust-card"><strong>7 дней</strong><span>короткий формат без воды</span></div><div class="trust-card"><strong>20+</strong><span>промтов, шаблонов и идей</span></div><div class="trust-card"><strong>Firebase</strong><span>заявки сохраняются в админке</span></div></div>
         </div>
-
-        <aside class="course-card" aria-label="Превью курса">
-          <div class="terminal-head">
-            <div class="dots"><i></i><i></i><i></i></div>
-            <span>GOSRESALE / AI SYSTEM</span>
-          </div>
-          <div class="preview-screen">
-            <div class="ai-chip">● AI COURSE ACTIVE</div>
-            <div class="screen-title">Твой старт в AI-контенте</div>
-            <ul class="screen-list">
-              <li>Генерация идей для видео и постов</li>
-              <li>Промты для картинок, сценариев и продаж</li>
-              <li>Упаковка Telegram-канала и оффера</li>
-              <li>План контента на 14 дней</li>
-              <li>Схема заявки и оплаты</li>
-            </ul>
-            <div class="floating-panel">
-              <div class="mini-label">Прогресс ученика</div>
-              <div class="progress"><span></span></div>
-              <div class="mini-stats">
-                <div><strong>5</strong><small>модулей</small></div>
-                <div><strong>14</strong><small>дней плана</small></div>
-              </div>
-            </div>
-          </div>
-        </aside>
+        <aside class="course-card"><div class="terminal-head"><div class="dots"><i></i><i></i><i></i></div><span>GOSRESALE / AI SYSTEM</span></div><div class="preview-screen"><div class="ai-chip">● AI COURSE ACTIVE</div><div class="screen-title">Твой старт в AI-контенте</div><ul class="screen-list"><li>Генерация идей для видео и постов</li><li>Промты для картинок, сценариев и продаж</li><li>Упаковка Telegram-канала и оффера</li><li>План контента на 14 дней</li><li>Заявки сразу в админ-панель</li></ul></div></aside>
       </div>
     </section>
 
-    <section id="about">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-title">
-            <div class="eyebrow">About course</div>
-            <h2>Что ты получишь внутри</h2>
-            <p>Курс сделан как быстрый вход в AI-инструменты: чтобы ты не просто посмотрел уроки, а собрал понятный мини-проект и понял, куда двигаться дальше.</p>
-          </div>
-        </div>
+    <section id="about"><div class="container"><div class="section-head"><div class="section-title"><div class="eyebrow">About course</div><h2>Что ты получишь внутри</h2><p>Курс сделан как быстрый вход в AI-инструменты: чтобы ты не просто посмотрел уроки, а собрал понятный мини-проект.</p></div></div><div class="grid-3"><article class="card benefit-card"><div class="icon-box">🧠</div><h3>Понимание ИИ</h3><p>Как использовать ChatGPT и другие AI-инструменты для идей, текстов, сценариев, анализа и упаковки.</p></article><article class="card benefit-card"><div class="icon-box">🎬</div><h3>Контент-система</h3><p>Как находить темы, писать хуки, делать сценарии и превращать идеи в TikTok/Reels/Shorts.</p></article><article class="card benefit-card"><div class="icon-box">💸</div><h3>Монетизация</h3><p>Как упаковать оффер, принимать заявки, вести человека в Telegram и готовить первые продажи.</p></article></div></div></section>
 
-        <div class="grid-3">
-          <article class="card benefit-card">
-            <div class="icon-box">🧠</div>
-            <h3>Понимание ИИ</h3>
-            <p>Разберёшь, как использовать ChatGPT и другие AI-инструменты для идей, текстов, сценариев, анализа и упаковки.</p>
-          </article>
+    <section id="program"><div class="container"><div class="section-head"><div class="section-title"><div class="eyebrow">Program</div><h2>Программа мини-курса</h2><p>Модули можно проходить по порядку. Каждый блок заканчивается практическим действием.</p></div><a href="#order" class="btn btn-primary">Хочу на курс</a></div><div class="card module-card"><div class="module-num">01</div><div><h3>База AI: как думать промтами</h3><p class="muted">Как ставить задачу ИИ, получать нормальные ответы и улучшать результат.</p></div><span class="module-time">День 1</span></div><br/><div class="card module-card"><div class="module-num">02</div><div><h3>Идеи и ниши для контента</h3><p class="muted">Как находить темы, которые цепляют внимание, и превращать их в рубрики.</p></div><span class="module-time">День 2</span></div><br/><div class="card module-card"><div class="module-num">03</div><div><h3>Сценарии, хуки и визуалы</h3><p class="muted">Первый кадр, боль зрителя, обещание, развязка и CTA в Telegram.</p></div><span class="module-time">Дни 3–4</span></div><br/><div class="card module-card"><div class="module-num">04</div><div><h3>Упаковка Telegram и оффера</h3><p class="muted">Аватарка, описание, закреп, лид-магнит, доверие и заявка.</p></div><span class="module-time">Дни 5–6</span></div><br/><div class="card module-card"><div class="module-num">05</div><div><h3>Заявки, оплата и первые продажи</h3><p class="muted">Как принять заявку, объяснить тариф и довести человека до покупки без давления.</p></div><span class="module-time">День 7</span></div></div></section>
 
-          <article class="card benefit-card">
-            <div class="icon-box">🎬</div>
-            <h3>Контент-система</h3>
-            <p>Получишь схему, как находить темы, писать хуки, делать сценарии и превращать идеи в TikTok/Reels/Shorts.</p>
-          </article>
+    <section id="pricing"><div class="container"><div class="section-head"><div class="section-title"><div class="eyebrow">Pricing</div><h2>Тарифы</h2><p>Тарифы загружаются из Firebase. Меняй их в админ-панели — сайт обновится автоматически.</p></div></div><div class="grid-3" id="plansGrid"><div class="empty">Загрузка тарифов...</div></div></div></section>
 
-          <article class="card benefit-card">
-            <div class="icon-box">💸</div>
-            <h3>Монетизация</h3>
-            <p>Поймёшь, как упаковать оффер, принимать заявки, вести человека в Telegram и готовить первые продажи.</p>
-          </article>
+    <section id="payment"><div class="container"><div class="section-head"><div class="section-title"><div class="eyebrow">Payment</div><h2>Способы оплаты</h2><p id="paymentInfo">Оплата: банковская карта, USDT TRC20, USDT TON, TON. Реквизиты отправляются только в личной переписке.</p></div></div><div class="grid-2"><article class="card payment-card"><h3>Доступные варианты</h3><div class="payment-methods"><div class="payment-method"><div><strong>Банковская карта</strong><span class="muted">Visa / Mastercard / локальная карта</span></div><div class="method-icon">💳</div></div><div class="payment-method"><div><strong>Криптовалюта</strong><span class="muted">USDT TRC20 / USDT TON / TON</span></div><div class="method-icon">₮</div></div><div class="payment-method"><div><strong>Telegram</strong><span class="muted">Перевод по договорённости</span></div><div class="method-icon">✈️</div></div></div></article><article class="card payment-card"><h3>Как проходит покупка</h3><div class="payment-methods"><div class="payment-method"><div><strong>1. Заполняешь заявку</strong><span class="muted">Данные сохраняются в админке.</span></div><div class="method-icon">1</div></div><div class="payment-method"><div><strong>2. Получаешь реквизиты</strong><span class="muted">Поддержка подтверждает тариф.</span></div><div class="method-icon">2</div></div><div class="payment-method"><div><strong>3. Получаешь доступ</strong><span class="muted">После оплаты тебе отправляют материалы.</span></div><div class="method-icon">3</div></div></div></article></div></div></section>
 
-          <article class="card benefit-card">
-            <div class="icon-box">📦</div>
-            <h3>Готовые шаблоны</h3>
-            <p>Промты для постов, сценариев, обложек, лид-магнитов, прогрева аудитории и описания своего продукта.</p>
-          </article>
+    <section id="order"><div class="container"><div class="section-head"><div class="section-title"><div class="eyebrow">Order</div><h2>Оставить заявку</h2><p>Заявка сохранится в Firebase и появится в админ-панели.</p></div></div><div class="card" style="padding:28px;border-radius:36px"><form id="orderForm"><div class="form-grid"><div class="form-row"><label for="name">Имя</label><input id="name" placeholder="Например: Дима" required /></div><div class="form-row"><label for="telegram">Telegram username</label><input id="telegram" placeholder="Например: @username" required /></div></div><div class="form-grid"><div class="form-row"><label for="plan">Тариф</label><select id="plan"></select></div><div class="form-row"><label for="paymentWay">Способ оплаты</label><select id="paymentWay"><option>Банковская карта</option><option>USDT TRC20</option><option>USDT TON</option><option>TON</option><option>Telegram / другой способ</option></select></div></div><div class="form-row"><label for="goal">Что хочешь получить от курса?</label><textarea id="goal" placeholder="Например: хочу делать AI-контент, запустить Telegram-канал и понять монетизацию"></textarea></div><div class="summary-box"><div class="summary-row"><span>Выбранный тариф</span><strong id="summaryPlan">—</strong></div><div class="summary-row"><span>Способ оплаты</span><strong id="summaryPayment">—</strong></div><div class="summary-row"><span>Итого</span><strong id="summaryPrice">—</strong></div></div><button class="btn btn-primary" type="submit">Отправить заявку</button><p class="notice" style="margin-top:12px">После отправки заявка появится в админке. Также откроется Telegram с готовым сообщением.</p><div class="success-message" id="successMessage">Заявка отправлена. Мы свяжемся с тобой в Telegram.</div></form></div></div></section>
 
-          <article class="card benefit-card">
-            <div class="icon-box">🚀</div>
-            <h3>План запуска</h3>
-            <p>Пошаговый план: что публиковать, как прогревать аудиторию и как переводить людей на заявку.</p>
-          </article>
+    <section id="reviews"><div class="container"><div class="section-head"><div class="section-title"><div class="eyebrow">Feedback</div><h2>Отзывы</h2><p>Отзывы загружаются из админ-панели.</p></div></div><div class="grid-3" id="reviewsGrid"><div class="empty">Загрузка отзывов...</div></div></div></section>
 
-          <article class="card benefit-card">
-            <div class="icon-box">🛡️</div>
-            <h3>Безопасный подход</h3>
-            <p>Без обещаний «миллионов за день». Фокус на навыках, контенте, системности и нормальной подаче.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+    <section id="faq"><div class="container"><div class="section-head"><div class="section-title"><div class="eyebrow">FAQ</div><h2>Частые вопросы</h2><p>FAQ можно менять через админ-панель.</p></div></div><div class="faq-list" id="faqList"><div class="empty">Загрузка FAQ...</div></div></div></section>
 
-    <section id="program">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-title">
-            <div class="eyebrow">Program</div>
-            <h2>Программа мини-курса</h2>
-            <p>Модули можно проходить по порядку. Каждый блок заканчивается практическим действием, чтобы у тебя появился результат, а не просто заметки.</p>
-          </div>
-          <a href="#order" class="btn btn-primary">Хочу на курс</a>
-        </div>
+    <section id="contacts"><div class="container"><div class="section-head"><div class="section-title"><div class="eyebrow">Contacts</div><h2>Контакты</h2><p>По вопросам курса, оплаты, доступа и сотрудничества — пиши в Telegram.</p></div></div><div class="grid-2"><article class="card contact-card"><h3>Telegram-канал</h3><p>Анонсы, материалы, разборы и новости курса.</p><br/><a data-channel-link class="btn btn-primary" href="https://t.me/gostalanty" target="_blank" rel="noopener">Перейти в канал</a></article><article class="card contact-card"><h3>Техподдержка</h3><p>Вопросы по оплате, доступу, тарифам и материалам курса.</p><br/><a data-support-link class="btn btn-cyan" href="https://t.me/whemmel" target="_blank" rel="noopener">Написать в поддержку</a></article></div></div></section>
 
-        <div class="course-path">
-          <article class="card module-card">
-            <div class="module-num">01</div>
-            <div>
-              <h3>База AI: как думать промтами</h3>
-              <p>Как ставить задачу ИИ, получать нормальные ответы, улучшать результат и не тратить время на хаос.</p>
-            </div>
-            <span class="module-time">День 1</span>
-          </article>
-
-          <article class="card module-card">
-            <div class="module-num">02</div>
-            <div>
-              <h3>Идеи и ниши для контента</h3>
-              <p>Как находить темы, которые цепляют внимание, и превращать их в короткие ролики, посты и рубрики.</p>
-            </div>
-            <span class="module-time">День 2</span>
-          </article>
-
-          <article class="card module-card">
-            <div class="module-num">03</div>
-            <div>
-              <h3>Сценарии, хуки и визуалы</h3>
-              <p>Структура короткого видео: первый кадр, боль зрителя, обещание, развязка и CTA в Telegram.</p>
-            </div>
-            <span class="module-time">Дни 3–4</span>
-          </article>
-
-          <article class="card module-card">
-            <div class="module-num">04</div>
-            <div>
-              <h3>Упаковка Telegram и оффера</h3>
-              <p>Как оформить канал, написать закреп, подготовить лид-магнит, объяснить ценность и собрать доверие.</p>
-            </div>
-            <span class="module-time">Дни 5–6</span>
-          </article>
-
-          <article class="card module-card">
-            <div class="module-num">05</div>
-            <div>
-              <h3>Заявки, оплата и первые продажи</h3>
-              <p>Как принять заявку, объяснить тариф, дать способы оплаты и довести человека до покупки без давления.</p>
-            </div>
-            <span class="module-time">День 7</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="bonuses">
-      <div class="container bonus-wrap">
-        <div class="bonus-grid">
-          <div class="section-title">
-            <div class="eyebrow">Bonuses</div>
-            <h2>Бонусы внутри</h2>
-            <p>Дополнительные материалы, которые помогают быстрее начать и не сидеть с пустым листом.</p>
-          </div>
-
-          <div class="bonus-list">
-            <div class="bonus-line"><span><strong>База промтов:</strong> для постов, сценариев, обложек, прогрева и продаж.</span></div>
-            <div class="bonus-line"><span><strong>Контент-план:</strong> готовая структура публикаций на 14 дней.</span></div>
-            <div class="bonus-line"><span><strong>Чек-лист Telegram:</strong> аватарка, описание, закреп, CTA, доверие.</span></div>
-            <div class="bonus-line"><span><strong>Шаблон заявки:</strong> что спрашивать у человека перед оплатой.</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-title">
-            <div class="eyebrow">Pricing</div>
-            <h2>Тарифы</h2>
-            <p>Цены можно поменять прямо в коде. Сейчас стоят как готовый пример для сайта.</p>
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <article class="card pricing-card" data-plan="Start" data-price="19">
-            <h3>Start</h3>
-            <p>Для самостоятельного старта.</p>
-            <div class="price">$19 <small>/ доступ</small></div>
-            <ul class="pricing-list">
-              <li>5 модулей мини-курса</li>
-              <li>База промтов</li>
-              <li>Контент-план на 14 дней</li>
-              <li>Доступ к материалам</li>
-              <li>Без личной проверки</li>
-            </ul>
-            <a href="#order" class="btn select-plan">Выбрать Start</a>
-          </article>
-
-          <article class="card pricing-card popular" data-plan="Pro" data-price="49">
-            <span class="popular-label">Популярный</span>
-            <h3>Pro</h3>
-            <p>Для тех, кто хочет быстрее собрать систему.</p>
-            <div class="price">$49 <small>/ доступ</small></div>
-            <ul class="pricing-list">
-              <li>Всё из тарифа Start</li>
-              <li>Дополнительные шаблоны оффера</li>
-              <li>Чек-лист упаковки Telegram</li>
-              <li>Разбор твоей идеи в сообщении</li>
-              <li>Рекомендации по первым постам</li>
-            </ul>
-            <a href="#order" class="btn btn-primary select-plan">Выбрать Pro</a>
-          </article>
-
-          <article class="card pricing-card" data-plan="Mentor" data-price="99">
-            <h3>Mentor</h3>
-            <p>Для личного сопровождения.</p>
-            <div class="price">$99 <small>/ доступ</small></div>
-            <ul class="pricing-list">
-              <li>Всё из тарифа Pro</li>
-              <li>Личный созвон или разбор</li>
-              <li>Помощь с оффером</li>
-              <li>План запуска под тебя</li>
-              <li>Поддержка в Telegram</li>
-            </ul>
-            <a href="#order" class="btn select-plan">Выбрать Mentor</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="payment">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-title">
-            <div class="eyebrow">Payment</div>
-            <h2>Способы оплаты</h2>
-            <p>После заявки тебе напишут в Telegram и отправят актуальные реквизиты. Этот блок можно адаптировать под твои реальные методы.</p>
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <article class="card payment-card">
-            <h3>Доступные варианты</h3>
-            <p>Выбери удобный способ в форме. Если способ оплаты отличается — напиши напрямую в Telegram.</p>
-
-            <div class="payment-methods">
-              <div class="payment-method">
-                <div><strong>Банковская карта</strong><span>Visa / Mastercard / локальная карта</span></div>
-                <div class="method-icon">💳</div>
-              </div>
-              <div class="payment-method">
-                <div><strong>Криптовалюта</strong><span>USDT TRC20 / USDT TON / TON</span></div>
-                <div class="method-icon">₮</div>
-              </div>
-              <div class="payment-method">
-                <div><strong>Telegram</strong><span>Перевод по договорённости через Telegram</span></div>
-                <div class="method-icon">✈️</div>
-              </div>
-              <div class="payment-method">
-                <div><strong>Индивидуально</strong><span>Если нужен другой способ — укажи в заявке</span></div>
-                <div class="method-icon">🤝</div>
-              </div>
-            </div>
-          </article>
-
-          <article class="card payment-card">
-            <h3>Как проходит покупка</h3>
-            <div class="payment-methods">
-              <div class="payment-method">
-                <div><strong>1. Заполняешь заявку</strong><span>Указываешь Telegram, тариф и способ оплаты.</span></div>
-                <div class="method-icon">1</div>
-              </div>
-              <div class="payment-method">
-                <div><strong>2. Получаешь реквизиты</strong><span>С тобой связываются и подтверждают оплату.</span></div>
-                <div class="method-icon">2</div>
-              </div>
-              <div class="payment-method">
-                <div><strong>3. Получаешь доступ</strong><span>После оплаты тебе отправляют материалы курса.</span></div>
-                <div class="method-icon">3</div>
-              </div>
-              <div class="payment-method">
-                <div><strong>4. Проходишь и внедряешь</strong><span>Делаешь задания, собираешь контент и оффер.</span></div>
-                <div class="method-icon">4</div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="order">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-title">
-            <div class="eyebrow">Order</div>
-            <h2>Оставить заявку</h2>
-            <p>Форма работает без сервера: она собирает данные и открывает готовое сообщение в Telegram. Тебе останется отправить его.</p>
-          </div>
-        </div>
-
-        <div class="order-panel">
-          <form class="order-form" id="orderForm">
-            <div class="form-grid">
-              <div>
-                <label for="name">Имя</label>
-                <input id="name" name="name" placeholder="Например: Дима" required />
-              </div>
-              <div>
-                <label for="telegram">Telegram username</label>
-                <input id="telegram" name="telegram" placeholder="Например: @username" required />
-              </div>
-            </div>
-
-            <div class="form-grid">
-              <div>
-                <label for="plan">Тариф</label>
-                <select id="plan" name="plan">
-                  <option value="Start" data-price="19">Start — $19</option>
-                  <option value="Pro" data-price="49" selected>Pro — $49</option>
-                  <option value="Mentor" data-price="99">Mentor — $99</option>
-                </select>
-              </div>
-              <div>
-                <label for="paymentWay">Способ оплаты</label>
-                <select id="paymentWay" name="paymentWay">
-                  <option>Банковская карта</option>
-                  <option>USDT TRC20</option>
-                  <option>USDT TON</option>
-                  <option>TON</option>
-                  <option>Telegram / другой способ</option>
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label for="goal">Что хочешь получить от курса?</label>
-              <textarea id="goal" name="goal" placeholder="Например: хочу делать AI-контент, запустить Telegram-канал и понять монетизацию"></textarea>
-            </div>
-
-            <div class="summary-box" aria-live="polite">
-              <div class="summary-row"><span>Выбранный тариф</span><strong id="summaryPlan">Pro</strong></div>
-              <div class="summary-row"><span>Способ оплаты</span><strong id="summaryPayment">Банковская карта</strong></div>
-              <div class="summary-row"><span>Итого</span><strong id="summaryPrice">$49</strong></div>
-            </div>
-
-            <button class="btn btn-primary" type="submit">Отправить заявку в Telegram</button>
-            <p class="notice">Нажимая кнопку, ты откроешь Telegram с готовым текстом заявки. Оплата происходит только после подтверждения в личной переписке.</p>
-            <div class="success-message" id="successMessage">Заявка собрана. Если Telegram не открылся автоматически, нажми кнопку ещё раз или напиши напрямую: https://t.me/whemmel</div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section id="reviews">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-title">
-            <div class="eyebrow">Feedback</div>
-            <h2>Отзывы / примеры результатов</h2>
-            <p>Пока это демо-блок. Замени тексты на реальные отзывы учеников, когда они появятся.</p>
-          </div>
-        </div>
-
-        <div class="reviews-grid">
-          <article class="card review-card">
-            <div class="stars">★★★★★</div>
-            <p>«Я наконец понял, как не просто генерировать картинки, а собрать из этого нормальную контент-систему.»</p>
-            <div class="review-author"><div class="avatar">A</div><div><strong>Алексей</strong><span>AI-контент</span></div></div>
-          </article>
-
-          <article class="card review-card">
-            <div class="stars">★★★★★</div>
-            <p>«Самое полезное — промты и структура прогрева. До этого я просто делал посты без понимания цели.»</p>
-            <div class="review-author"><div class="avatar">M</div><div><strong>Марина</strong><span>Telegram-проект</span></div></div>
-          </article>
-
-          <article class="card review-card">
-            <div class="stars">★★★★★</div>
-            <p>«Курс короткий, но после него стало понятно, как упаковать идею и довести человека до заявки.»</p>
-            <div class="review-author"><div class="avatar">D</div><div><strong>Данил</strong><span>Начинающий автор</span></div></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-title">
-            <div class="eyebrow">FAQ</div>
-            <h2>Частые вопросы</h2>
-            <p>Ответы на основные сомнения перед покупкой мини-курса.</p>
-          </div>
-        </div>
-
-        <div class="faq-list">
-          <div class="card faq-item active">
-            <button class="faq-question" type="button"><span>Курс подойдёт новичку?</span><span>+</span></button>
-            <div class="faq-content">Да. Курс рассчитан на тех, кто хочет быстро понять, как использовать ИИ для контента, Telegram и первых продаж без сложной технической базы.</div>
-          </div>
-          <div class="card faq-item">
-            <button class="faq-question" type="button"><span>Нужен ли опыт в программировании?</span><span>+</span></button>
-            <div class="faq-content">Нет. Основной фокус — промты, контент, упаковка, мышление и простые инструменты. Код писать не обязательно.</div>
-          </div>
-          <div class="card faq-item">
-            <button class="faq-question" type="button"><span>Будет ли гарантия заработка?</span><span>+</span></button>
-            <div class="faq-content">Нет. Курс даёт инструменты, структуру и практику, но результат зависит от твоих действий, ниши, контента и регулярности.</div>
-          </div>
-          <div class="card faq-item">
-            <button class="faq-question" type="button"><span>Как я получу доступ?</span><span>+</span></button>
-            <div class="faq-content">После заявки и оплаты тебе отправят доступ к материалам в Telegram или другим удобным способом, который будет согласован в переписке.</div>
-          </div>
-          <div class="card faq-item">
-            <button class="faq-question" type="button"><span>Можно ли оплатить криптовалютой?</span><span>+</span></button>
-            <div class="faq-content">Да, в форме есть варианты USDT TRC20, USDT TON и TON. Актуальные реквизиты нужно получать только в личной переписке.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacts">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-title">
-            <div class="eyebrow">Contacts</div>
-            <h2>Контакты</h2>
-            <p>По вопросам курса, оплаты, доступа и сотрудничества — пиши в Telegram.</p>
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <article class="card contact-card">
-            <h3>Связь с GOSRESALE</h3>
-            <p>Основной канал связи — Telegram. Там можно уточнить тариф, оплату и доступ к материалам.</p>
-            <ul class="contact-list">
-              <li>
-                <div><strong>Telegram-канал / контакт</strong><span>https://t.me/whemmel</span></div>
-                <a class="btn btn-primary" href="https://t.me/whemmel" target="_blank" rel="noopener">Открыть</a>
-              </li>
-              <li>
-                <div><strong>Время ответа</strong><span>Обычно после просмотра заявки</span></div>
-                <span class="method-icon">⏱️</span>
-              </li>
-              <li>
-                <div><strong>Вопросы по оплате</strong><span>Реквизиты отправляются только в личной переписке</span></div>
-                <span class="method-icon">🔐</span>
-              </li>
-            </ul>
-          </article>
-
-          <article class="card contact-card">
-            <h3>Важно</h3>
-            <p>Этот сайт не обещает гарантированный доход. Мини-курс помогает разобраться в инструментах ИИ, контенте и запуске своего проекта.</p>
-            <ul class="contact-list">
-              <li>
-                <div><strong>Не финансовая рекомендация</strong><span>Материалы курса — образовательные.</span></div>
-                <span class="method-icon">⚠️</span>
-              </li>
-              <li>
-                <div><strong>Безопасность</strong><span>Не отправляй оплату неизвестным аккаунтам. Проверяй ссылку Telegram.</span></div>
-                <span class="method-icon">🛡️</span>
-              </li>
-              <li>
-                <div><strong>Доступ</strong><span>Выдаётся после подтверждения оплаты.</span></div>
-                <span class="method-icon">✅</span>
-              </li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div class="container">
-        <div class="cta-box">
-          <h2>Готов стартовать с ИИ и собрать свой первый AI-проект?</h2>
-          <p>Оставь заявку, выбери тариф и напиши, что хочешь получить. Дальше с тобой свяжутся в Telegram и объяснят следующий шаг.</p>
-          <div class="hero-actions" style="justify-content:center; margin-bottom:0;">
-            <a href="#order" class="btn btn-primary">Записаться на мини-курс</a>
-            <a href="https://t.me/whemmel" target="_blank" rel="noopener" class="btn btn-telegram">Написать в Telegram</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="cta"><div class="container"><div class="cta-box"><h2>Готов стартовать с ИИ и собрать свой первый AI-проект?</h2><p>Оставь заявку, выбери тариф и напиши, что хочешь получить. Дальше с тобой свяжутся в Telegram.</p><div class="hero-actions" style="justify-content:center;margin-bottom:0"><a href="#order" class="btn btn-primary">Записаться на мини-курс</a><a data-channel-link href="https://t.me/gostalanty" target="_blank" rel="noopener" class="btn btn-cyan">Открыть канал</a></div></div></div></section>
   </main>
 
-  <footer>
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> GOSRESALE. Образовательный мини-курс по ИИ. Без гарантий дохода.</p>
-      <div class="footer-links">
-        <a href="#program">Программа</a>
-        <a href="#pricing">Тарифы</a>
-        <a href="#contacts">Контакты</a>
-      </div>
-    </div>
-  </footer>
+  <footer><div class="container footer-inner"><p>© <span id="year"></span> GOSRESALE. Образовательный мини-курс по ИИ. Без гарантий дохода.</p><div class="footer-links"><a href="#program">Программа</a><a href="#pricing">Тарифы</a><a data-channel-link href="https://t.me/gostalanty" target="_blank" rel="noopener">Канал</a></div></div></footer>
+  <div class="toast" id="toast"></div>
 
-  <button class="scroll-top" id="scrollTop" aria-label="Наверх">↑</button>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+    import { getFirestore, doc, getDoc, collection, getDocs, addDoc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-  <script>
-    const nav = document.getElementById("nav");
-    const mobileToggle = document.getElementById("mobileToggle");
-    const scrollTop = document.getElementById("scrollTop");
-    const orderForm = document.getElementById("orderForm");
-    const planSelect = document.getElementById("plan");
-    const paymentWay = document.getElementById("paymentWay");
-    const summaryPlan = document.getElementById("summaryPlan");
-    const summaryPayment = document.getElementById("summaryPayment");
-    const summaryPrice = document.getElementById("summaryPrice");
-    const successMessage = document.getElementById("successMessage");
+    
+const firebaseConfig = {
+  apiKey: "AIzaSyAz1LEQqwva3TRHweB7ovPIhuU6cli37WE",
+  authDomain: "gosresale-ai.firebaseapp.com",
+  projectId: "gosresale-ai",
+  storageBucket: "gosresale-ai.firebasestorage.app",
+  messagingSenderId: "1040253354274",
+  appId: "1:1040253354274:web:c57dc65cc45d9322c0257b",
+  measurementId: "G-CFK6YXWQEK"
+};
 
-    const telegramLink = "https://t.me/whemmel";
-    const telegramUsername = "whemmel";
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const ADMIN_TELEGRAM = "whemmel";
 
-    function updateSummary() {
-      const option = planSelect.options[planSelect.selectedIndex];
-      const price = option.dataset.price || "49";
-      summaryPlan.textContent = planSelect.value;
-      summaryPayment.textContent = paymentWay.value;
-      summaryPrice.textContent = `$${price}`;
+    const defaults = {
+      content: {
+        heroTitle: 'Мини-курс по <span class="gradient-text">ИИ от GOSRESALE</span>',
+        heroText: 'Научись использовать искусственный интеллект для контента, идей, упаковки, TikTok, Telegram и первых продаж.',
+        heroCta: 'Оставить заявку',
+        mainTelegram: 'https://t.me/gostalanty',
+        supportTelegram: 'https://t.me/whemmel',
+        paymentInfo: 'Оплата: банковская карта, USDT TRC20, USDT TON, TON. Реквизиты отправляются только в личной переписке.'
+      },
+      plans: [
+        { id:'start', name:'Start', price:19, description:'Для самостоятельного старта', features:['5 модулей мини-курса','База промтов','Контент-план на 14 дней','Доступ к материалам'], active:true },
+        { id:'pro', name:'Pro', price:49, description:'Для тех, кто хочет быстрее собрать систему', features:['Всё из Start','Шаблоны оффера','Чек-лист Telegram','Разбор идеи в сообщении'], active:true },
+        { id:'mentor', name:'Mentor', price:99, description:'Для личного сопровождения', features:['Всё из Pro','Личный созвон или разбор','Помощь с оффером','План запуска под тебя'], active:true }
+      ],
+      faq: [
+        { question:'Курс подойдёт новичку?', answer:'Да. Курс рассчитан на быстрый старт в AI, контенте и Telegram без сложной технической базы.' },
+        { question:'Можно ли оплатить криптовалютой?', answer:'Да. Доступны USDT TRC20, USDT TON и TON. Актуальные реквизиты отправляются в личной переписке.' },
+        { question:'Есть ли гарантия заработка?', answer:'Нет. Курс даёт инструменты и структуру, но результат зависит от действий, регулярности и выбранной ниши.' }
+      ],
+      reviews: [
+        { name:'Алексей', role:'AI-контент', text:'Я понял, как собрать нормальную контент-систему, а не просто генерировать случайные картинки.', stars:5 },
+        { name:'Марина', role:'Telegram-проект', text:'Самое полезное — промты и структура прогрева. Стало понятно, зачем каждый пост.', stars:5 },
+        { name:'Данил', role:'Начинающий автор', text:'Коротко, понятно и по делу. Помогло собрать идею и оформить первый оффер.', stars:5 }
+      ]
+    };
+
+    let activePlans = [];
+    const $ = (id) => document.getElementById(id);
+    const toast = $('toast');
+
+    function showToast(text) { toast.textContent = text; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2500); }
+    function escapeHtml(value) { return String(value ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;'); }
+
+    async function loadSite() {
+      try {
+        const settingsSnap = await getDoc(doc(db, 'site', 'settings'));
+        const content = settingsSnap.exists() ? {...defaults.content, ...settingsSnap.data()} : defaults.content;
+        renderContent(content);
+        activePlans = await loadCollection('plans', defaults.plans, true);
+        const faqs = await loadCollection('faq', defaults.faq, false);
+        const reviews = await loadCollection('reviews', defaults.reviews, false);
+        renderPlans(activePlans.filter(p => p.active !== false));
+        renderFaq(faqs);
+        renderReviews(reviews);
+      } catch (error) {
+        console.error(error);
+        showToast('Не удалось загрузить Firebase. Проверь правила и настройки проекта.');
+        renderContent(defaults.content); renderPlans(defaults.plans); renderFaq(defaults.faq); renderReviews(defaults.reviews);
+      }
     }
 
-    function normalizeTelegram(value) {
-      const clean = value.trim();
-      if (!clean) return "не указан";
-      return clean.startsWith("@") ? clean : `@${clean}`;
+    async function loadCollection(name, fallback, sortByOrder) {
+      try {
+        const q = sortByOrder ? query(collection(db, name), orderBy('order', 'asc')) : collection(db, name);
+        const snap = await getDocs(q);
+        const arr = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        return arr.length ? arr : fallback;
+      } catch (error) {
+        console.warn('fallback for', name, error);
+        return fallback;
+      }
     }
 
-    mobileToggle.addEventListener("click", () => {
-      nav.classList.toggle("open");
-    });
+    function renderContent(content) {
+      $('heroTitle').innerHTML = content.heroTitle || defaults.content.heroTitle;
+      $('heroText').textContent = content.heroText || defaults.content.heroText;
+      $('heroCta').textContent = content.heroCta || defaults.content.heroCta;
+      $('paymentInfo').textContent = content.paymentInfo || defaults.content.paymentInfo;
+      document.querySelectorAll('[data-channel-link]').forEach(a => a.href = content.mainTelegram || defaults.content.mainTelegram);
+      document.querySelectorAll('[data-support-link]').forEach(a => a.href = content.supportTelegram || defaults.content.supportTelegram);
+    }
 
-    document.querySelectorAll(".nav-links a").forEach((link) => {
-      link.addEventListener("click", () => nav.classList.remove("open"));
-    });
+    function renderPlans(plans) {
+      activePlans = plans.length ? plans : defaults.plans;
+      $('plansGrid').innerHTML = activePlans.map(plan => `
+        <article class="card pricing-card">
+          <h3>${escapeHtml(plan.name)}</h3>
+          <p>${escapeHtml(plan.description || '')}</p>
+          <div class="price">${Number(plan.price || 0)} <small>/ доступ</small></div>
+          <ul class="pricing-list">${toArray(plan.features).map(f => `<li>${escapeHtml(f)}</li>`).join('')}</ul>
+          <a href="#order" class="btn ${plan.name === 'Pro' ? 'btn-primary' : ''}" data-select-plan="${escapeHtml(plan.name)}">Выбрать ${escapeHtml(plan.name)}</a>
+        </article>`).join('');
+      $('plan').innerHTML = activePlans.map(plan => `<option value="${escapeHtml(plan.name)}" data-price="${Number(plan.price || 0)}">${escapeHtml(plan.name)} — $${Number(plan.price || 0)}</option>`).join('');
+      document.querySelectorAll('[data-select-plan]').forEach(btn => btn.addEventListener('click', () => { $('plan').value = btn.dataset.selectPlan; updateSummary(); }));
+      updateSummary();
+    }
 
-    document.querySelectorAll(".faq-question").forEach((button) => {
-      button.addEventListener("click", () => {
-        button.closest(".faq-item").classList.toggle("active");
-      });
-    });
+    function renderFaq(items) {
+      $('faqList').innerHTML = items.map((item, i) => `<div class="card faq-item ${i === 0 ? 'active' : ''}"><button class="faq-question" type="button"><span>${escapeHtml(item.question)}</span><span>+</span></button><div class="faq-content">${escapeHtml(item.answer)}</div></div>`).join('');
+      document.querySelectorAll('.faq-question').forEach(btn => btn.addEventListener('click', () => btn.closest('.faq-item').classList.toggle('active')));
+    }
 
-    document.querySelectorAll(".select-plan").forEach((button) => {
-      button.addEventListener("click", (event) => {
-        const card = event.target.closest(".pricing-card");
-        if (!card) return;
-        const selectedPlan = card.dataset.plan;
-        planSelect.value = selectedPlan;
-        updateSummary();
-      });
-    });
+    function renderReviews(items) {
+      $('reviewsGrid').innerHTML = items.map(r => `<article class="card review-card"><div class="stars">${'★'.repeat(Number(r.stars || 5))}</div><p class="muted">«${escapeHtml(r.text)}»</p><div class="review-author"><div class="avatar">${escapeHtml((r.name || '?').slice(0,1))}</div><div><strong>${escapeHtml(r.name)}</strong><br><span class="muted">${escapeHtml(r.role || '')}</span></div></div></article>`).join('');
+    }
 
-    planSelect.addEventListener("change", updateSummary);
-    paymentWay.addEventListener("change", updateSummary);
+    function toArray(value) { return Array.isArray(value) ? value : String(value || '').split('\\n').filter(Boolean); }
+    function normalizeTelegram(value) { const clean = value.trim(); return clean.startsWith('@') ? clean : '@' + clean; }
+    function updateSummary() { const option = $('plan').options[$('plan').selectedIndex]; $('summaryPlan').textContent = $('plan').value || '—'; $('summaryPayment').textContent = $('paymentWay').value; $('summaryPrice').textContent = '$' + (option?.dataset.price || '0'); }
 
-    orderForm.addEventListener("submit", (event) => {
+    $('plan').addEventListener('change', updateSummary);
+    $('paymentWay').addEventListener('change', updateSummary);
+    $('mobileToggle').addEventListener('click', () => $('nav').classList.toggle('open'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => $('nav').classList.remove('open')));
+    $('year').textContent = new Date().getFullYear();
+
+    $('orderForm').addEventListener('submit', async (event) => {
       event.preventDefault();
+      const option = $('plan').options[$('plan').selectedIndex];
+      const lead = {
+        name: $('name').value.trim(),
+        telegram: normalizeTelegram($('telegram').value),
+        plan: $('plan').value,
+        price: Number(option?.dataset.price || 0),
+        paymentWay: $('paymentWay').value,
+        goal: $('goal').value.trim(),
+        status: 'new',
+        source: 'site',
+        createdAt: serverTimestamp()
+      };
+      try {
+        await addDoc(collection(db, 'leads'), lead);
+        $('successMessage').classList.add('show');
+        showToast('Заявка сохранена в админке');
+        const msg = encodeURIComponent(`Привет! Хочу записаться на мини-курс GOSRESALE по ИИ.
 
-      const name = document.getElementById("name").value.trim();
-      const tg = normalizeTelegram(document.getElementById("telegram").value);
-      const goal = document.getElementById("goal").value.trim() || "не указано";
-      const option = planSelect.options[planSelect.selectedIndex];
-      const price = option.dataset.price || "49";
-
-      const message = [
-        "Привет! Хочу записаться на мини-курс GOSRESALE по ИИ.",
-        "",
-        `Имя: ${name}`,
-        `Мой Telegram: ${tg}`,
-        `Тариф: ${planSelect.value} — $${price}`,
-        `Способ оплаты: ${paymentWay.value}`,
-        `Цель: ${goal}`,
-        "",
-        "Отправьте, пожалуйста, детали по оплате и доступу."
-      ].join("
-");
-
-      const encoded = encodeURIComponent(message);
-      window.open(`https://t.me/${telegramUsername}?text=${encoded}`, "_blank");
-      successMessage.classList.add("show");
-    });
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 620) {
-        scrollTop.classList.add("show");
-      } else {
-        scrollTop.classList.remove("show");
+Имя: ${lead.name}
+Мой Telegram: ${lead.telegram}
+Тариф: ${lead.plan} — $${lead.price}
+Способ оплаты: ${lead.paymentWay}
+Цель: ${lead.goal || 'не указано'}`);
+        window.open(`https://t.me/${ADMIN_TELEGRAM}?text=${msg}`, '_blank');
+        event.target.reset(); updateSummary();
+      } catch (error) {
+        console.error(error);
+        showToast('Ошибка отправки. Проверь Firestore Rules.');
       }
     });
 
-    scrollTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-    updateSummary();
+    loadSite();
   </script>
 </body>
 </html>
