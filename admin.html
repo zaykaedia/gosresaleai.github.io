@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GOSRESALE Admin Panel</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050706;
+      --bg2: #08120d;
+      --panel: rgba(255,255,255,0.065);
+      --panel2: rgba(255,255,255,0.1);
+      --text: #f4fff8;
+      --muted: #a7b7ad;
+      --line: rgba(255,255,255,0.13);
+      --green: #39ff9a;
+      --green2: #b7ff55;
+      --cyan: #5df4ff;
+      --yellow: #ffe86b;
+      --red: #ff5b6f;
+      --orange: #ffb547;
+      --dark: #07110c;
+      --radius: 24px;
+      --shadow: 0 24px 80px rgba(0,0,0,0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(57,255,154,0.18), transparent 32%),
+        radial-gradient(circle at 86% 0%, rgba(93,244,255,0.14), transparent 30%),
+        linear-gradient(180deg, #050706 0%, #07120d 52%, #030503 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+      pointer-events: none;
+      z-index: -1;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.8), transparent 85%);
+    }
+
+    button, input, textarea, select {
+      font-family: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .login-screen {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .login-card {
+      width: min(460px, 100%);
+      border: 1px solid rgba(255,255,255,0.14);
+      background:
+        radial-gradient(circle at 15% 0%, rgba(57,255,154,0.18), transparent 32%),
+        rgba(255,255,255,0.07);
+      border-radius: 34px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      color: #06100a;
+      font-weight: 950;
+      font-size: 22px;
+      box-shadow: 0 0 40px rgba(57,255,154,0.25);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 22px;
+      letter-spacing: -0.06em;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 850;
+      margin-top: 3px;
+    }
+
+    h1 {
+      font-size: 38px;
+      line-height: 0.98;
+      letter-spacing: -0.075em;
+      margin-bottom: 12px;
+    }
+
+    .login-card p {
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 850;
+      margin-bottom: 8px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      min-height: 50px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.075);
+      color: var(--text);
+      border-radius: 17px;
+      outline: none;
+      padding: 14px 15px;
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    select option {
+      color: #07110c;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(57,255,154,0.55);
+      box-shadow: 0 0 0 4px rgba(57,255,154,0.09);
+    }
+
+    .form-row {
+      margin-bottom: 14px;
+    }
+
+    .btn {
+      border: 1px solid rgba(255,255,255,0.13);
+      background: rgba(255,255,255,0.075);
+      color: var(--text);
+      min-height: 46px;
+      border-radius: 999px;
+      padding: 12px 17px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      cursor: pointer;
+      font-weight: 900;
+      transition: 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .btn-primary {
+      color: #06100a;
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      border-color: transparent;
+      box-shadow: 0 16px 42px rgba(57,255,154,0.22);
+    }
+
+    .btn-red {
+      background: rgba(255,91,111,0.12);
+      border-color: rgba(255,91,111,0.28);
+      color: #ffd7dd;
+    }
+
+    .btn-cyan {
+      background: rgba(93,244,255,0.1);
+      border-color: rgba(93,244,255,0.28);
+      color: #dffcff;
+    }
+
+    .btn-small {
+      min-height: 36px;
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      margin-top: 12px;
+      padding: 13px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .error {
+      display: none;
+      color: #ffd7dd;
+      background: rgba(255,91,111,0.12);
+      border: 1px solid rgba(255,91,111,0.25);
+      padding: 12px;
+      border-radius: 16px;
+      margin-bottom: 14px;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 20px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      background: rgba(5,7,6,0.75);
+      backdrop-filter: blur(18px);
+      overflow-y: auto;
+    }
+
+    .side-nav {
+      display: grid;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      min-height: 48px;
+      border-radius: 18px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      font-weight: 850;
+      text-align: left;
+      transition: 0.2s ease;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.075);
+    }
+
+    .nav-btn.active {
+      box-shadow: inset 0 0 0 1px rgba(57,255,154,0.18);
+    }
+
+    .nav-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: rgba(57,255,154,0.1);
+      color: var(--green);
+      flex: 0 0 auto;
+    }
+
+    .sidebar-footer {
+      margin-top: 22px;
+      display: grid;
+      gap: 9px;
+    }
+
+    .main {
+      padding: 22px;
+      min-width: 0;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 28px;
+      background: rgba(5,7,6,0.72);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+      margin-bottom: 22px;
+    }
+
+    .topbar h2 {
+      font-size: 28px;
+      letter-spacing: -0.065em;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .topbar p {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 58px rgba(0,0,0,0.16);
+    }
+
+    .stat-card {
+      padding: 20px;
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 34px;
+      letter-spacing: -0.075em;
+      margin-top: 8px;
+    }
+
+    .stat-card small {
+      display: inline-flex;
+      margin-top: 10px;
+      color: #dffff0;
+      background: rgba(57,255,154,0.09);
+      border: 1px solid rgba(57,255,154,0.2);
+      padding: 6px 9px;
+      border-radius: 999px;
+      font-weight: 850;
+    }
+
+    .panel {
+      padding: 20px;
+      margin-top: 14px;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .panel-head h3 {
+      font-size: 22px;
+      letter-spacing: -0.05em;
+    }
+
+    .panel-head p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .toolbar input, .toolbar select {
+      max-width: 260px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 820px;
+      background: rgba(0,0,0,0.14);
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 950;
+      background: rgba(255,255,255,0.04);
+    }
+
+    td {
+      color: #eafff1;
+      font-weight: 650;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 950;
+      border: 1px solid rgba(255,255,255,0.13);
+      background: rgba(255,255,255,0.07);
+      color: var(--muted);
+    }
+
+    .tag.new {
+      color: #dffff0;
+      background: rgba(57,255,154,0.1);
+      border-color: rgba(57,255,154,0.24);
+    }
+
+    .tag.progress {
+      color: #dffcff;
+      background: rgba(93,244,255,0.1);
+      border-color: rgba(93,244,255,0.24);
+    }
+
+    .tag.paid {
+      color: #fff7c9;
+      background: rgba(255,232,107,0.1);
+      border-color: rgba(255,232,107,0.24);
+    }
+
+    .tag.closed {
+      color: #ffd7dd;
+      background: rgba(255,91,111,0.1);
+      border-color: rgba(255,91,111,0.24);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .list-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .item-card {
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.045);
+      display: grid;
+      gap: 10px;
+    }
+
+    .item-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .item-card h4 {
+      font-size: 17px;
+      letter-spacing: -0.035em;
+    }
+
+    .item-card p {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      max-width: 360px;
+      z-index: 100;
+      display: none;
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(57,255,154,0.22);
+      background: rgba(5,7,6,0.92);
+      color: #dffff0;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .toast.show {
+      display: block;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.62);
+      backdrop-filter: blur(10px);
+      z-index: 90;
+    }
+
+    .modal-backdrop.show {
+      display: grid;
+    }
+
+    .modal {
+      width: min(720px, 100%);
+      max-height: 88vh;
+      overflow-y: auto;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background:
+        radial-gradient(circle at 15% 0%, rgba(57,255,154,0.15), transparent 35%),
+        #07100b;
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .modal-head h3 {
+      font-size: 24px;
+      letter-spacing: -0.055em;
+    }
+
+    .close-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.13);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    .chart {
+      height: 260px;
+      display: flex;
+      align-items: end;
+      gap: 12px;
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+        rgba(0,0,0,0.12);
+      background-size: 30px 30px;
+    }
+
+    .bar-wrap {
+      flex: 1;
+      display: grid;
+      align-items: end;
+      gap: 8px;
+      height: 100%;
+    }
+
+    .bar {
+      width: 100%;
+      min-height: 10px;
+      border-radius: 12px 12px 6px 6px;
+      background: linear-gradient(180deg, var(--green), rgba(57,255,154,0.25));
+      border: 1px solid rgba(57,255,154,0.25);
+    }
+
+    .bar-label {
+      color: var(--muted);
+      font-size: 11px;
+      text-align: center;
+      font-weight: 850;
+    }
+
+    .empty {
+      color: var(--muted);
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px dashed rgba(255,255,255,0.18);
+      text-align: center;
+      line-height: 1.6;
+      font-weight: 700;
+    }
+
+    .danger-zone {
+      border-color: rgba(255,91,111,0.25);
+      background: rgba(255,91,111,0.065);
+    }
+
+    @media (max-width: 1120px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 290px;
+        z-index: 80;
+        transform: translateX(-110%);
+        transition: 0.25s ease;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .mobile-menu {
+        display: inline-flex;
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .main {
+        padding: 14px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .topbar-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .grid-4, .grid-3, .grid-2, .form-grid, .form-grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar input, .toolbar select {
+        max-width: none;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .actions .btn, .topbar-actions .btn, .sidebar-footer .btn {
+        width: auto;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="brand">
+        <div class="brand-mark">G</div>
+        <div>
+          <strong>GOSRESALE</strong>
+          <span>Admin Panel</span>
+        </div>
+      </div>
+
+      <h1>Вход в админ-панель</h1>
+      <p>Демо-админка для управления курсом, заявками, тарифами, FAQ, отзывами и настройками сайта.</p>
+
+      <div class="error" id="loginError">Неверный логин или пароль.</div>
+
+      <form id="loginForm">
+        <div class="form-row">
+          <label for="login">Логин</label>
+          <input id="login" autocomplete="username" placeholder="admin" required />
+        </div>
+        <div class="form-row">
+          <label for="password">Пароль</label>
+          <input id="password" type="password" autocomplete="current-password" placeholder="12345" required />
+        </div>
+        <button class="btn btn-primary" type="submit" style="width:100%">Войти</button>
+      </form>
+
+      <div class="hint">
+        Демо-доступ: <strong>admin</strong> / <strong>12345</strong>.<br />
+        Важно: это статическая админка для GitHub Pages. Для настоящей защиты нужен backend/Firebase/Supabase.
+      </div>
+    </div>
+  </section>
+
+  <section class="app hidden" id="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">G</div>
+        <div>
+          <strong>GOSRESALE</strong>
+          <span>Control Room</span>
+        </div>
+      </div>
+
+      <nav class="side-nav" id="sideNav">
+        <button class="nav-btn active" data-view="dashboard"><span class="nav-icon">📊</span>Дашборд</button>
+        <button class="nav-btn" data-view="leads"><span class="nav-icon">🧾</span>Заявки</button>
+        <button class="nav-btn" data-view="content"><span class="nav-icon">📝</span>Контент сайта</button>
+        <button class="nav-btn" data-view="pricing"><span class="nav-icon">💳</span>Тарифы</button>
+        <button class="nav-btn" data-view="faq"><span class="nav-icon">❔</span>FAQ</button>
+        <button class="nav-btn" data-view="reviews"><span class="nav-icon">⭐</span>Отзывы</button>
+        <button class="nav-btn" data-view="support"><span class="nav-icon">🛟</span>Техподдержка</button>
+        <button class="nav-btn" data-view="settings"><span class="nav-icon">⚙️</span>Настройки</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a class="btn btn-cyan" href="index.html" target="_blank">Открыть сайт</a>
+        <button class="btn btn-red" id="logoutBtn">Выйти</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h2 id="pageTitle">Дашборд</h2>
+          <p id="pageSubtitle">Общая статистика и быстрые действия</p>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn mobile-menu" id="openMenu">☰ Меню</button>
+          <button class="btn" id="seedBtn">Добавить демо-данные</button>
+          <button class="btn btn-cyan" id="exportJsonBtn">Экспорт JSON</button>
+          <button class="btn btn-primary" id="openLeadModalBtn">+ Заявка</button>
+        </div>
+      </header>
+
+      <section class="view active" id="dashboardView">
+        <div class="grid-4">
+          <div class="card stat-card">
+            <span>Всего заявок</span>
+            <strong id="statLeads">0</strong>
+            <small>Все обращения</small>
+          </div>
+          <div class="card stat-card">
+            <span>Новые</span>
+            <strong id="statNew">0</strong>
+            <small>Нужно ответить</small>
+          </div>
+          <div class="card stat-card">
+            <span>Оплачено</span>
+            <strong id="statPaid">0</strong>
+            <small>Покупатели курса</small>
+          </div>
+          <div class="card stat-card">
+            <span>Оборот</span>
+            <strong id="statRevenue">$0</strong>
+            <small>По оплаченным заявкам</small>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card panel">
+            <div class="panel-head">
+              <div>
+                <h3>Заявки за неделю</h3>
+                <p>Демо-график строится по сохранённым заявкам.</p>
+              </div>
+            </div>
+            <div class="chart" id="leadsChart"></div>
+          </div>
+
+          <div class="card panel">
+            <div class="panel-head">
+              <div>
+                <h3>Быстрые действия</h3>
+                <p>Полезные кнопки для работы с курсом.</p>
+              </div>
+            </div>
+            <div class="list-stack">
+              <button class="btn btn-primary" id="quickLead">Добавить новую заявку</button>
+              <button class="btn" id="quickExportCsv">Скачать заявки CSV</button>
+              <button class="btn btn-cyan" id="quickCopySupport">Скопировать шаблон поддержки</button>
+              <a class="btn" href="https://t.me/gostalanty" target="_blank" rel="noopener">Открыть канал GOS TALANTY</a>
+              <a class="btn" href="https://t.me/whemmel" target="_blank" rel="noopener">Открыть техподдержку</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <div class="panel-head">
+            <div>
+              <h3>Последние заявки</h3>
+              <p>Последние 5 обращений из базы админки.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Имя</th>
+                  <th>Telegram</th>
+                  <th>Тариф</th>
+                  <th>Статус</th>
+                  <th>Дата</th>
+                </tr>
+              </thead>
+              <tbody id="latestLeadsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="leadsView">
+        <div class="card panel">
+          <div class="panel-head">
+            <div>
+              <h3>Заявки на курс</h3>
+              <p>Добавляй, редактируй, меняй статус, экспортируй заявки.</p>
+            </div>
+            <button class="btn btn-primary" id="addLeadBtn">+ Добавить</button>
+          </div>
+
+          <div class="toolbar">
+            <input id="leadSearch" placeholder="Поиск: имя, Telegram, цель" />
+            <select id="leadStatusFilter">
+              <option value="all">Все статусы</option>
+              <option value="new">Новые</option>
+              <option value="progress">В работе</option>
+              <option value="paid">Оплачено</option>
+              <option value="closed">Закрыто</option>
+            </select>
+            <button class="btn" id="exportCsvBtn">Экспорт CSV</button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Клиент</th>
+                  <th>Контакт</th>
+                  <th>Тариф</th>
+                  <th>Оплата</th>
+                  <th>Цель</th>
+                  <th>Статус</th>
+                  <th>Действия</th>
+                </tr>
+              </thead>
+              <tbody id="leadsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="contentView">
+        <div class="grid-2">
+          <div class="card panel">
+            <div class="panel-head">
+              <div>
+                <h3>Главный экран</h3>
+                <p>Тексты можно хранить тут и потом вручную перенести в сайт.</p>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="heroTitle">Заголовок</label>
+              <input id="heroTitle" />
+            </div>
+            <div class="form-row">
+              <label for="heroText">Описание</label>
+              <textarea id="heroText"></textarea>
+            </div>
+            <div class="form-row">
+              <label for="heroCta">Текст кнопки</label>
+              <input id="heroCta" />
+            </div>
+            <button class="btn btn-primary" id="saveContentBtn">Сохранить контент</button>
+          </div>
+
+          <div class="card panel">
+            <div class="panel-head">
+              <div>
+                <h3>Ссылки проекта</h3>
+                <p>Контакты, канал и поддержка.</p>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="mainTelegram">Telegram-канал</label>
+              <input id="mainTelegram" />
+            </div>
+            <div class="form-row">
+              <label for="supportTelegram">Техподдержка</label>
+              <input id="supportTelegram" />
+            </div>
+            <div class="form-row">
+              <label for="paymentInfo">Информация по оплате</label>
+              <textarea id="paymentInfo"></textarea>
+            </div>
+            <button class="btn btn-primary" id="saveLinksBtn">Сохранить ссылки</button>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <div class="panel-head">
+            <div>
+              <h3>Превью сохранённых настроек</h3>
+              <p>Так будут выглядеть текущие данные в админке.</p>
+            </div>
+          </div>
+          <div class="empty" id="contentPreview"></div>
+        </div>
+      </section>
+
+      <section class="view" id="pricingView">
+        <div class="card panel">
+          <div class="panel-head">
+            <div>
+              <h3>Тарифы курса</h3>
+              <p>Создавай тарифы, меняй цены и описание.</p>
+            </div>
+            <button class="btn btn-primary" id="addPlanBtn">+ Тариф</button>
+          </div>
+          <div class="grid-3" id="plansList"></div>
+        </div>
+      </section>
+
+      <section class="view" id="faqView">
+        <div class="card panel">
+          <div class="panel-head">
+            <div>
+              <h3>FAQ</h3>
+              <p>Вопросы и ответы для лендинга.</p>
+            </div>
+            <button class="btn btn-primary" id="addFaqBtn">+ Вопрос</button>
+          </div>
+          <div class="list-stack" id="faqList"></div>
+        </div>
+      </section>
+
+      <section class="view" id="reviewsView">
+        <div class="card panel">
+          <div class="panel-head">
+            <div>
+              <h3>Отзывы</h3>
+              <p>Демо-блок отзывов для сайта.</p>
+            </div>
+            <button class="btn btn-primary" id="addReviewBtn">+ Отзыв</button>
+          </div>
+          <div class="grid-3" id="reviewsList"></div>
+        </div>
+      </section>
+
+      <section class="view" id="supportView">
+        <div class="grid-2">
+          <div class="card panel">
+            <div class="panel-head">
+              <div>
+                <h3>Шаблоны поддержки</h3>
+                <p>Быстрые ответы клиентам.</p>
+              </div>
+              <button class="btn btn-primary" id="addTemplateBtn">+ Шаблон</button>
+            </div>
+            <div class="list-stack" id="templatesList"></div>
+          </div>
+
+          <div class="card panel">
+            <div class="panel-head">
+              <div>
+                <h3>Инструкция менеджеру</h3>
+                <p>Как обрабатывать заявку.</p>
+              </div>
+            </div>
+            <div class="list-stack">
+              <div class="item-card"><h4>1. Проверить заявку</h4><p>Посмотри имя, Telegram, тариф, способ оплаты и цель человека.</p></div>
+              <div class="item-card"><h4>2. Ответить в Telegram</h4><p>Напиши человеку, подтверди тариф и отправь актуальные реквизиты.</p></div>
+              <div class="item-card"><h4>3. После оплаты</h4><p>Поменяй статус на «Оплачено» и отправь доступ к материалам.</p></div>
+              <div class="item-card"><h4>4. Если не отвечает</h4><p>Поставь статус «В работе» и вернись к заявке позже.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="settingsView">
+        <div class="grid-2">
+          <div class="card panel">
+            <div class="panel-head">
+              <div>
+                <h3>Настройки доступа</h3>
+                <p>Демо-логин хранится в браузере. Это не настоящая защита.</p>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="adminLogin">Новый логин</label>
+              <input id="adminLogin" />
+            </div>
+            <div class="form-row">
+              <label for="adminPassword">Новый пароль</label>
+              <input id="adminPassword" type="password" />
+            </div>
+            <button class="btn btn-primary" id="saveAccessBtn">Сохранить доступ</button>
+            <div class="hint">Не выкладывай реальную админку с паролем в открытый GitHub-репозиторий. Для продакшена нужна серверная авторизация.</div>
+          </div>
+
+          <div class="card panel danger-zone">
+            <div class="panel-head">
+              <div>
+                <h3>Опасная зона</h3>
+                <p>Очистка локальной базы в этом браузере.</p>
+              </div>
+            </div>
+            <div class="list-stack">
+              <button class="btn" id="resetDemoBtn">Сбросить к демо-данным</button>
+              <button class="btn btn-red" id="clearAllBtn">Удалить все данные</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <div class="panel-head">
+            <div>
+              <h3>Как сделать настоящую админку</h3>
+              <p>Для реального проекта нужно подключить базу и авторизацию.</p>
+            </div>
+          </div>
+          <div class="list-stack">
+            <div class="item-card"><h4>Вариант 1: Firebase</h4><p>Firebase Authentication + Firestore. Быстро, удобно, подходит для заявок и контента.</p></div>
+            <div class="item-card"><h4>Вариант 2: Supabase</h4><p>Auth + PostgreSQL + Storage. Хороший вариант для более взрослого проекта.</p></div>
+            <div class="item-card"><h4>Вариант 3: Node.js backend</h4><p>Express/Nest + база данных + серверная админка. Максимальный контроль, но сложнее запуск.</p></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </section>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="modalTitle">Модальное окно</h3>
+        <button class="close-btn" id="closeModal">×</button>
+      </div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const STORAGE_KEY = "gosresale_admin_data_v1";
+    const SESSION_KEY = "gosresale_admin_session_v1";
+
+    const defaultData = {
+      access: {
+        login: "admin",
+        password: "12345"
+      },
+      content: {
+        heroTitle: "Мини-курс по ИИ от GOSRESALE",
+        heroText: "Научись использовать искусственный интеллект для контента, идей, упаковки, TikTok, Telegram и первых продаж.",
+        heroCta: "Оставить заявку",
+        mainTelegram: "https://t.me/gostalanty",
+        supportTelegram: "https://t.me/whemmel",
+        paymentInfo: "Оплата: банковская карта, USDT TRC20, USDT TON, TON. Реквизиты отправляются только в личной переписке."
+      },
+      leads: [],
+      plans: [
+        { id: cryptoId(), name: "Start", price: 19, description: "Для самостоятельного старта", features: "5 модулей\nБаза промтов\nКонтент-план на 14 дней\nДоступ к материалам", active: true },
+        { id: cryptoId(), name: "Pro", price: 49, description: "Для тех, кто хочет быстрее собрать систему", features: "Всё из Start\nШаблоны оффера\nЧек-лист Telegram\nРазбор идеи в сообщении", active: true },
+        { id: cryptoId(), name: "Mentor", price: 99, description: "Для личного сопровождения", features: "Всё из Pro\nЛичный созвон или разбор\nПомощь с оффером\nПлан запуска под тебя", active: true }
+      ],
+      faq: [
+        { id: cryptoId(), question: "Курс подойдёт новичку?", answer: "Да. Курс рассчитан на быстрый старт в AI, контенте и Telegram без сложной технической базы." },
+        { id: cryptoId(), question: "Можно ли оплатить криптовалютой?", answer: "Да. Доступны USDT TRC20, USDT TON и TON. Актуальные реквизиты отправляются в личной переписке." },
+        { id: cryptoId(), question: "Есть ли гарантия заработка?", answer: "Нет. Курс даёт инструменты и структуру, но результат зависит от действий, регулярности и выбранной ниши." }
+      ],
+      reviews: [
+        { id: cryptoId(), name: "Алексей", role: "AI-контент", text: "Я понял, как собрать нормальную контент-систему, а не просто генерировать случайные картинки.", stars: 5 },
+        { id: cryptoId(), name: "Марина", role: "Telegram-проект", text: "Самое полезное — промты и структура прогрева. Стало понятно, зачем каждый пост.", stars: 5 },
+        { id: cryptoId(), name: "Данил", role: "Начинающий автор", text: "Коротко, понятно и по делу. Помогло собрать идею и оформить первый оффер.", stars: 5 }
+      ],
+      templates: [
+        { id: cryptoId(), title: "Первый ответ", text: "Привет! Спасибо за заявку на мини-курс GOSRESALE по ИИ. Подскажи, какой тариф хочешь выбрать и какой способ оплаты удобнее?" },
+        { id: cryptoId(), title: "Оплата", text: "Отправляю реквизиты для оплаты. После оплаты пришли, пожалуйста, скрин/подтверждение, и я выдам доступ к материалам." },
+        { id: cryptoId(), title: "Доступ", text: "Оплата подтверждена. Вот доступ к материалам курса. Начни с первого модуля и напиши, если появятся вопросы." }
+      ]
+    };
+
+    let data = loadData();
+    let currentView = "dashboard";
+    let currentEditId = null;
+    let currentModalType = null;
+
+    const loginScreen = document.getElementById("loginScreen");
+    const app = document.getElementById("app");
+    const sidebar = document.getElementById("sidebar");
+    const toast = document.getElementById("toast");
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+
+    function cryptoId() {
+      return Math.random().toString(16).slice(2) + Date.now().toString(16);
+    }
+
+    function loadData() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) {
+        const copy = JSON.parse(JSON.stringify(defaultData));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(copy));
+        return copy;
+      }
+      try {
+        const parsed = JSON.parse(raw);
+        return mergeDefaults(parsed);
+      } catch (error) {
+        const copy = JSON.parse(JSON.stringify(defaultData));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(copy));
+        return copy;
+      }
+    }
+
+    function mergeDefaults(saved) {
+      return {
+        ...defaultData,
+        ...saved,
+        access: { ...defaultData.access, ...(saved.access || {}) },
+        content: { ...defaultData.content, ...(saved.content || {}) },
+        leads: saved.leads || [],
+        plans: saved.plans || defaultData.plans,
+        faq: saved.faq || defaultData.faq,
+        reviews: saved.reviews || defaultData.reviews,
+        templates: saved.templates || defaultData.templates
+      };
+    }
+
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      renderAll();
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function formatDate(value) {
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return "—";
+      return date.toLocaleDateString("ru-RU", { day: "2-digit", month: "2-digit", year: "numeric" });
+    }
+
+    function statusLabel(status) {
+      const map = {
+        new: "Новая",
+        progress: "В работе",
+        paid: "Оплачено",
+        closed: "Закрыто"
+      };
+      return map[status] || "Новая";
+    }
+
+    function statusClass(status) {
+      return status || "new";
+    }
+
+    function planPrice(planName) {
+      const plan = data.plans.find((item) => item.name === planName);
+      return Number(plan?.price || 0);
+    }
+
+    function checkSession() {
+      if (sessionStorage.getItem(SESSION_KEY) === "true") {
+        loginScreen.classList.add("hidden");
+        app.classList.remove("hidden");
+        renderAll();
+      }
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const login = document.getElementById("login").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const error = document.getElementById("loginError");
+
+      if (login === data.access.login && password === data.access.password) {
+        sessionStorage.setItem(SESSION_KEY, "true");
+        loginScreen.classList.add("hidden");
+        app.classList.remove("hidden");
+        error.style.display = "none";
+        renderAll();
+      } else {
+        error.style.display = "block";
+      }
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      sessionStorage.removeItem(SESSION_KEY);
+      app.classList.add("hidden");
+      loginScreen.classList.remove("hidden");
+    });
+
+    document.getElementById("openMenu").addEventListener("click", () => {
+      sidebar.classList.add("open");
+    });
+
+    document.addEventListener("click", (event) => {
+      if (window.innerWidth > 1120) return;
+      if (!sidebar.contains(event.target) && !event.target.closest("#openMenu")) {
+        sidebar.classList.remove("open");
+      }
+    });
+
+    document.querySelectorAll(".nav-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        setView(button.dataset.view);
+        sidebar.classList.remove("open");
+      });
+    });
+
+    function setView(view) {
+      currentView = view;
+      document.querySelectorAll(".nav-btn").forEach((btn) => btn.classList.toggle("active", btn.dataset.view === view));
+      document.querySelectorAll(".view").forEach((section) => section.classList.remove("active"));
+      document.getElementById(`${view}View`).classList.add("active");
+
+      const titles = {
+        dashboard: ["Дашборд", "Общая статистика и быстрые действия"],
+        leads: ["Заявки", "Клиенты, статусы, тарифы и оплата"],
+        content: ["Контент сайта", "Тексты, ссылки и информация лендинга"],
+        pricing: ["Тарифы", "Управление пакетами курса"],
+        faq: ["FAQ", "Вопросы и ответы"],
+        reviews: ["Отзывы", "Социальное доказательство для сайта"],
+        support: ["Техподдержка", "Шаблоны ответов и инструкция менеджеру"],
+        settings: ["Настройки", "Доступ, экспорт и опасная зона"]
+      };
+
+      document.getElementById("pageTitle").textContent = titles[view][0];
+      document.getElementById("pageSubtitle").textContent = titles[view][1];
+      renderAll();
+    }
+
+    function renderAll() {
+      renderStats();
+      renderCharts();
+      renderLatestLeads();
+      renderLeads();
+      renderContent();
+      renderPlans();
+      renderFaq();
+      renderReviews();
+      renderTemplates();
+      renderSettings();
+    }
+
+    function renderStats() {
+      const leads = data.leads;
+      const newLeads = leads.filter((lead) => lead.status === "new").length;
+      const paidLeads = leads.filter((lead) => lead.status === "paid").length;
+      const revenue = leads.filter((lead) => lead.status === "paid").reduce((sum, lead) => sum + Number(lead.price || planPrice(lead.plan)), 0);
+
+      d
