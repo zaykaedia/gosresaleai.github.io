@@ -1,0 +1,90 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == "dimatelpiz4@gmail.com";
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    match /site/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /plans/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /faq/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /reviews/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /products/{docId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create, update: if isOwner(uid) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /orders/{docId} {
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+      allow read: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
+      allow update, delete: if isAdmin();
+    }
+
+    match /supportTemplates/{docId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /supportChats/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create, update: if isOwner(uid) || isAdmin();
+      allow delete: if isAdmin();
+
+      match /messages/{messageId} {
+        allow read: if isOwner(uid) || isAdmin();
+        allow create, update: if isOwner(uid) || isAdmin();
+        allow delete: if isAdmin();
+      }
+    }
+
+    match /leads/{docId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if request.resource.data.keys().hasOnly([
+        "name", "telegram", "plan", "price", "paymentWay", "goal", "status", "source", "createdAt"
+      ])
+      && request.resource.data.name is string
+      && request.resource.data.telegram is string
+      && request.resource.data.plan is string
+      && request.resource.data.paymentWay is string
+      && request.resource.data.status == "new"
+      && request.resource.data.name.size() >= 2
+      && request.resource.data.name.size() <= 80
+      && request.resource.data.telegram.size() >= 2
+      && request.resource.data.telegram.size() <= 80
+      && request.resource.data.goal.size() <= 1000;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
