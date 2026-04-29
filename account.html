@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Личный кабинет — GOSRESALE</title>
+  <meta name="description" content="Личный кабинет GOSRESALE: регистрация, вход, профиль и история заказов." />
+  <meta name="theme-color" content="#39ff9a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#050706;--card:rgba(255,255,255,.07);--card2:rgba(255,255,255,.11);--text:#f4fff8;--muted:#a7b7ad;--line:rgba(255,255,255,.13);--green:#39ff9a;--green2:#b7ff55;--cyan:#5df4ff;--red:#ff5b6f;--yellow:#ffe86b;--shadow:0 24px 80px rgba(0,0,0,.45);--radius:28px}*{box-sizing:border-box;margin:0;padding:0}body{min-height:100vh;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 12% 8%,rgba(57,255,154,.18),transparent 32%),radial-gradient(circle at 86% 0%,rgba(93,244,255,.14),transparent 30%),linear-gradient(180deg,#050706,#07120d 52%,#030503);overflow-x:hidden}body:before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:42px 42px;pointer-events:none;z-index:-1;mask-image:linear-gradient(180deg,rgba(0,0,0,.8),transparent 85%)}a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}.container{width:min(1180px,calc(100% - 32px));margin:0 auto}.hidden{display:none!important}.btn{border:1px solid var(--line);background:rgba(255,255,255,.075);color:var(--text);min-height:48px;padding:13px 18px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:900;cursor:pointer;transition:.22s;white-space:nowrap}.btn:hover{transform:translateY(-2px);background:var(--card2)}.btn-primary{border-color:transparent;background:linear-gradient(135deg,var(--green),var(--green2));color:#06100a;box-shadow:0 18px 50px rgba(57,255,154,.22)}.btn-cyan{background:rgba(93,244,255,.1);border-color:rgba(93,244,255,.28);color:#dffcff}.btn-red{background:rgba(255,91,111,.12);border-color:rgba(255,91,111,.28);color:#ffd7dd}.card{border:1px solid var(--line);background:var(--card);border-radius:var(--radius);box-shadow:0 18px 58px rgba(0,0,0,.16)}.nav{position:sticky;top:0;z-index:40;background:rgba(5,7,6,.76);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(18px)}.nav-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:950;letter-spacing:-.06em}.logo-mark{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--green),var(--green2));color:#06100a;box-shadow:0 0 40px rgba(57,255,154,.28)}.logo small{display:block;margin-top:2px;color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase}.nav-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.hero{padding:54px 0 20px}.eyebrow{color:var(--green);font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:950;margin-bottom:12px}h1{font-size:clamp(38px,6vw,72px);line-height:.95;letter-spacing:-.08em;margin-bottom:16px}.muted{color:var(--muted);font-size:16px;line-height:1.72}.gradient-text{background:linear-gradient(135deg,#fff,var(--green),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}.grid-2{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;align-items:start}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.panel{padding:22px}.panel-head{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:18px}.panel-head h2,.panel-head h3{letter-spacing:-.055em}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}.auth-tab{border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--muted);border-radius:16px;min-height:46px;font-weight:950;cursor:pointer}.auth-tab.active{background:linear-gradient(135deg,var(--green),var(--green2));color:#06100a;border-color:transparent}label{display:block;color:var(--muted);font-size:13px;font-weight:850;margin-bottom:8px}input,textarea,select{width:100%;min-height:50px;border-radius:18px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:var(--text);padding:14px 15px;outline:none;font-size:15px;font-weight:750}textarea{min-height:110px;resize:vertical;line-height:1.5}input:focus,textarea:focus,select:focus{border-color:rgba(57,255,154,.55);box-shadow:0 0 0 4px rgba(57,255,154,.09)}.form-row{margin-bottom:14px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.notice{color:var(--muted);font-size:13px;line-height:1.55}.error{display:none;padding:13px;border-radius:16px;background:rgba(255,91,111,.12);border:1px solid rgba(255,91,111,.25);color:#ffd7dd;font-weight:750;line-height:1.45;margin-top:12px}.error.show{display:block}.success{display:none;padding:13px;border-radius:16px;background:rgba(57,255,154,.1);border:1px solid rgba(57,255,154,.22);color:#dffff0;font-weight:750;line-height:1.45;margin-top:12px}.success.show{display:block}.profile-top{display:flex;align-items:center;gap:16px;margin-bottom:18px}.avatar{width:86px;height:86px;border-radius:26px;object-fit:cover;border:1px solid rgba(255,255,255,.16);background:linear-gradient(135deg,rgba(57,255,154,.18),rgba(93,244,255,.12));display:grid;place-items:center;font-weight:950;font-size:34px;color:rgba(255,255,255,.72)}.stat{padding:18px;border-radius:22px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.055)}.stat span{display:block;color:var(--muted);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.stat strong{display:block;margin-top:8px;font-size:28px;letter-spacing:-.06em}.orders{display:grid;gap:12px}.order{padding:16px;border-radius:22px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.055);display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start}.order h4{font-size:17px;letter-spacing:-.035em;margin-bottom:7px}.order p{color:var(--muted);font-size:13px;line-height:1.55}.tag{display:inline-flex;align-items:center;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:950;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.07);color:var(--muted)}.tag.waiting_card,.tag.waiting_usdt{color:#dffcff;background:rgba(93,244,255,.1);border-color:rgba(93,244,255,.24)}.tag.paid,.tag.delivered{color:#fff7c9;background:rgba(255,232,107,.1);border-color:rgba(255,232,107,.24)}.tag.cancelled{color:#ffd7dd;background:rgba(255,91,111,.1);border-color:rgba(255,91,111,.24)}.empty{color:var(--muted);padding:20px;border-radius:20px;border:1px dashed rgba(255,255,255,.18);text-align:center;line-height:1.6}.toast{position:fixed;right:18px;bottom:18px;max-width:360px;z-index:100;display:none;padding:14px 16px;border-radius:18px;border:1px solid rgba(57,255,154,.22);background:rgba(5,7,6,.92);color:#dffff0;box-shadow:var(--shadow);backdrop-filter:blur(12px);font-weight:800;line-height:1.45}.toast.show{display:block}@media(max-width:900px){.grid-2,.grid-3,.form-grid{grid-template-columns:1fr}.nav-inner{align-items:flex-start;flex-direction:column;padding:16px 0}.order{grid-template-columns:1fr}.panel-head{align-items:flex-start;flex-direction:column}h1{font-size:42px}}
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="container nav-inner"><a href="index.html" class="logo"><span class="logo-mark">G</span><span>GOSRESALE<small>Account</small></span></a><div class="nav-actions"><a class="btn" href="index.html">На сайт</a><button class="btn btn-red hidden" id="logoutBtn" type="button">Выйти</button></div></div></nav>
+
+  <main class="container">
+    <section class="hero"><div class="eyebrow">Personal account</div><h1>Личный кабинет <span class="gradient-text">GOSRESALE</span></h1><p class="muted">Здесь пользователь регистрируется, редактирует профиль и видит свои заказы.</p></section>
+
+    <section id="authScreen" class="grid-2">
+      <div class="card panel"><h2>Вход / регистрация</h2><p class="muted" style="margin:10px 0 18px">Создай аккаунт, чтобы покупать товары и отслеживать статус заказа.</p><div class="auth-tabs"><button class="auth-tab active" id="loginTab" type="button">Войти</button><button class="auth-tab" id="registerTab" type="button">Регистрация</button></div><form id="authForm"><div class="form-row hidden" id="nameRow"><label>Имя</label><input id="authName" placeholder="Дима"></div><div class="form-row hidden" id="telegramRow"><label>Telegram</label><input id="authTelegram" placeholder="@username"></div><div class="form-row"><label>Email</label><input id="authEmail" type="email" required placeholder="email@gmail.com"></div><div class="form-row"><label>Пароль</label><input id="authPassword" type="password" required minlength="6" placeholder="Минимум 6 символов"></div><button class="btn btn-primary" id="authSubmit" type="submit">Войти</button><button class="btn btn-cyan" id="resetPasswordBtn" type="button">Сбросить пароль</button><div class="error" id="authError"></div></form></div>
+      <div class="card panel"><h2>Что появится после входа</h2><div class="grid-3" style="margin-top:16px"><div class="stat"><span>Профиль</span><strong>✎</strong><p class="muted">Имя, Telegram, телефон, город, аватар.</p></div><div class="stat"><span>Заказы</span><strong>🧾</strong><p class="muted">История покупок и статусы оплаты.</p></div><div class="stat"><span>Доступ</span><strong>🔐</strong><p class="muted">Покупки привязаны к email пользователя.</p></div></div></div>
+    </section>
+
+    <section id="accountScreen" class="grid-2 hidden">
+      <div class="card panel"><div class="profile-top"><div class="avatar" id="avatarPreview">G</div><div><h2 id="profileName">Профиль</h2><p class="muted" id="profileEmail">email</p></div></div><div class="grid-3"><div class="stat"><span>Заказов</span><strong id="statOrders">0</strong></div><div class="stat"><span>Оплачено</span><strong id="statPaid">0</strong></div><div class="stat"><span>Ожидают</span><strong id="statWaiting">0</strong></div></div><form id="profileForm" style="margin-top:18px"><div class="form-grid"><div class="form-row"><label>Имя</label><input id="displayName" required></div><div class="form-row"><label>Telegram</label><input id="telegram" placeholder="@username"></div></div><div class="form-grid"><div class="form-row"><label>Телефон</label><input id="phone" placeholder="+373..."></div><div class="form-row"><label>Город</label><input id="city" placeholder="Congaz / Chisinau"></div></div><div class="form-row"><label>О себе / заметка</label><textarea id="about" placeholder="Например: интересуюсь AI, TikTok, digital-продуктами"></textarea></div><div class="form-row"><label>Аватар: загрузить фото</label><input id="avatarFile" type="file" accept="image/*"><p class="notice" style="margin-top:8px">Можно загрузить фото или вставить ссылку ниже. Фото хранится в Firebase Storage.</p></div><div class="form-row"><label>Или ссылка на аватар</label><input id="avatarUrl" placeholder="https://..."></div><button class="btn btn-primary" type="submit">Сохранить профиль</button><div class="success" id="profileSuccess">Профиль сохранён.</div><div class="error" id="profileError"></div></form></div>
+      <div class="card panel"><div class="panel-head"><div><h3>Мои заказы</h3><p class="muted">Здесь отображаются только покупки текущего пользователя.</p></div><button class="btn" id="reloadOrdersBtn" type="button">Обновить</button></div><div class="orders" id="ordersList"><div class="empty">Загрузка заказов...</div></div></div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, getDocs, serverTimestamp, query, where } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAz1LEQqwva3TRHweB7ovPIhuU6cli37WE",
+      authDomain: "gosresale-ai.firebaseapp.com",
+      projectId: "gosresale-ai",
+      storageBucket: "gosresale-ai.firebasestorage.app",
+      messagingSenderId: "1040253354274",
+      appId: "1:1040253354274:web:c57dc65cc45d9322c0257b",
+      measurementId: "G-CFK6YXWQEK"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+    const $ = (id) => document.getElementById(id);
+    let currentUser = null;
+    let profile = null;
+    let orders = [];
+    let authMode = 'login';
+
+    function showToast(text){ const toast=$('toast'); toast.textContent=text; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),2600); }
+    function escapeHtml(v){ return String(v ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;'); }
+    function price(v){ return `${Number(v || 0).toFixed(Number(v) % 1 ? 2 : 0)} USDT`; }
+    function fmtDate(ts){ if(!ts?.seconds) return '—'; return new Date(ts.seconds*1000).toLocaleString('ru-RU'); }
+    function statusLabel(s){ return {waiting_usdt:'Ждёт USDT',waiting_card:'Ждёт карту',paid:'Оплачено',delivered:'Выдано',cancelled:'Отменено'}[s] || s || 'Новый'; }
+    function authErrorText(code){ const map={'auth/email-already-in-use':'Этот email уже зарегистрирован. Нажми «Войти».','auth/invalid-email':'Проверь email.','auth/weak-password':'Пароль должен быть минимум 6 символов.','auth/invalid-credential':'Неверный email или пароль.','auth/user-not-found':'Пользователь не найден.','auth/wrong-password':'Неверный пароль.'}; return map[code] || 'Ошибка. Проверь данные и попробуй ещё раз.'; }
+
+    function setAuthMode(mode){ authMode=mode; $('loginTab').classList.toggle('active',mode==='login'); $('registerTab').classList.toggle('active',mode==='register'); $('nameRow').classList.toggle('hidden',mode!=='register'); $('telegramRow').classList.toggle('hidden',mode!=='register'); $('authSubmit').textContent=mode==='register'?'Создать аккаунт':'Войти'; $('authError').classList.remove('show'); }
+
+    async function ensureUserProfile(user, extra={}){
+      const userRef = doc(db,'users',user.uid);
+      const snap = await getDoc(userRef);
+      if(snap.exists()){
+        profile = { id:user.uid, ...snap.data() };
+      } else {
+        profile = { uid:user.uid, email:user.email || '', displayName:extra.displayName || (user.email || '').split('@')[0] || 'Пользователь', telegram:extra.telegram || '', phone:'', city:'', about:'', avatarUrl:'', role:'client', createdAt:serverTimestamp(), updatedAt:serverTimestamp() };
+        await setDoc(userRef, profile, { merge:true });
+      }
+      return profile;
+    }
+
+    async function loadOrders(){
+      if(!currentUser) return;
+      const q = query(collection(db,'orders'), where('uid','==',currentUser.uid));
+      const snap = await getDocs(q);
+      orders = snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+      renderOrders();
+    }
+
+    function renderAccount(){
+      if(!currentUser || !profile) return;
+      $('authScreen').classList.add('hidden');
+      $('accountScreen').classList.remove('hidden');
+      $('logoutBtn').classList.remove('hidden');
+      $('profileName').textContent = profile.displayName || 'Пользователь';
+      $('profileEmail').textContent = currentUser.email || profile.email || '';
+      $('displayName').value = profile.displayName || '';
+      $('telegram').value = profile.telegram || '';
+      $('phone').value = profile.phone || '';
+      $('city').value = profile.city || '';
+      $('about').value = profile.about || '';
+      $('avatarUrl').value = profile.avatarUrl || '';
+      if(profile.avatarUrl){ $('avatarPreview').innerHTML = `<img src="${escapeHtml(profile.avatarUrl)}" alt="avatar" style="width:100%;height:100%;object-fit:cover;border-radius:26px">`; }
+      else { $('avatarPreview').textContent = (profile.displayName || 'G').trim()[0]?.toUpperCase() || 'G'; }
+      renderStats();
+    }
+
+    function renderStats(){
+      $('statOrders').textContent = orders.length;
+      $('statPaid').textContent = orders.filter(o=>['paid','delivered'].includes(o.status)).length;
+      $('statWaiting').textContent = orders.filter(o=>['waiting_card','waiting_usdt'].includes(o.status)).length;
+    }
+
+    function renderOrders(){
+      renderStats();
+      const list = $('ordersList');
+      if(!orders.length){ list.innerHTML = '<div class="empty">Заказов пока нет. Перейди на сайт, выбери товар и оформи покупку.</div>'; return; }
+      list.innerHTML = orders.map(o=>`<div class="order"><div><h4>${escapeHtml(o.productTitle || 'Товар')}</h4><p>Сумма: <strong>${price(o.priceUSDT)}</strong><br>Оплата: ${escapeHtml(o.paymentMethod || '')}<br>Дата: ${fmtDate(o.createdAt)}<br>Комментарий: ${escapeHtml(o.buyerComment || '—')}</p></div><span class="tag ${escapeHtml(o.status || '')}">${statusLabel(o.status)}</span></div>`).join('');
+    }
+
+    $('loginTab').onclick=()=>setAuthMode('login');
+    $('registerTab').onclick=()=>setAuthMode('register');
+    $('authForm').onsubmit=async(e)=>{
+      e.preventDefault();
+      $('authError').classList.remove('show');
+      try{
+        const email=$('authEmail').value.trim();
+        const password=$('authPassword').value;
+        if(authMode==='register'){
+          const cred = await createUserWithEmailAndPassword(auth,email,password);
+          await ensureUserProfile(cred.user,{displayName:$('authName').value.trim(),telegram:$('authTelegram').value.trim()});
+          showToast('Аккаунт создан');
+        } else {
+          const cred = await signInWithEmailAndPassword(auth,email,password);
+          await ensureUserProfile(cred.user);
+          showToast('Ты вошёл');
+        }
+      } catch(error){ $('authError').textContent=authErrorText(error.code); $('authError').classList.add('show'); }
+    };
+
+    $('resetPasswordBtn').onclick=async()=>{
+      const email=$('authEmail').value.trim();
+      if(!email){ $('authError').textContent='Сначала введи email.'; $('authError').classList.add('show'); return; }
+      try{ await sendPasswordResetEmail(auth,email); showToast('Письмо для сброса пароля отправлено'); }
+      catch(error){ $('authError').textContent=authErrorText(error.code); $('authError').classList.add('show'); }
+    };
+
+    $('profileForm').onsubmit=async(e)=>{
+      e.preventDefault();
+      $('profileSuccess').classList.remove('show');
+      $('profileError').classList.remove('show');
+      try{
+        let avatarUrl = $('avatarUrl').value.trim();
+        const file = $('avatarFile').files[0];
+        if(file){
+          const path = `user-avatars/${currentUser.uid}/${Date.now()}-${file.name.replaceAll(' ','-')}`;
+          const storageRef = ref(storage,path);
+          await uploadBytes(storageRef,file);
+          avatarUrl = await getDownloadURL(storageRef);
+        }
+        const payload = { uid:currentUser.uid, email:currentUser.email || '', displayName:$('displayName').value.trim() || 'Пользователь', telegram:$('telegram').value.trim(), phone:$('phone').value.trim(), city:$('city').value.trim(), about:$('about').value.trim(), avatarUrl, role:'client', updatedAt:serverTimestamp() };
+        await updateDoc(doc(db,'users',currentUser.uid),payload);
+        profile = { ...profile, ...payload };
+        renderAccount();
+        $('profileSuccess').classList.add('show');
+        showToast('Профиль сохранён');
+      } catch(error){ console.error(error); $('profileError').textContent='Не удалось сохранить профиль. Проверь Firestore/Storage rules.'; $('profileError').classList.add('show'); }
+    };
+
+    $('logoutBtn').onclick=()=>signOut(auth);
+    $('reloadOrdersBtn').onclick=loadOrders;
+
+    onAuthStateChanged(auth, async(user)=>{
+      currentUser=user;
+      if(user){ await ensureUserProfile(user); renderAccount(); await loadOrders(); }
+      else { profile=null; orders=[]; $('authScreen').classList.remove('hidden'); $('accountScreen').classList.add('hidden'); $('logoutBtn').classList.add('hidden'); }
+    });
+  </script>
+</body>
+</html>

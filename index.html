@@ -194,10 +194,39 @@
 
     onAuthStateChanged(auth, async (user) => {
       currentUser = user;
-      if(user){ try { await ensureUserProfile(user); } catch(error){ console.error(error); } }
-      else { userProfile = null; }
+      if(user){
+        try {
+          await ensureUserProfile(user);
+          await loadProducts();
+        } catch(error){
+          console.error(error);
+          $('productsGrid').innerHTML = '<div class="empty">Не удалось загрузить товары. Проверь Firebase rules.</div>';
+        }
+      } else {
+        userProfile = null;
+        products = [];
+        renderLockedProducts();
+      }
       renderAuthNav();
     });
+
+    function renderLockedProducts(){
+      const grid = $('productsGrid');
+      if(!grid) return;
+      document.querySelector('#products')?.classList.add('catalog-locked');
+      $('categoryFilter').innerHTML = '<option value="all">Вход нужен</option>';
+      $('searchInput').value = '';
+      grid.innerHTML = `
+        <div class="locked-catalog" style="grid-column:1/-1">
+          <h3>🔐 Каталог закрыт</h3>
+          <p class="muted">Чтобы посмотреть товары, цены, фото, описания и оформить заказ, нужно войти или создать аккаунт. Это закрытый магазин GOSRESALE для зарегистрированных пользователей.</p>
+          <div class="locked-actions">
+            <button class="btn btn-primary" type="button" id="openLockedAuth">Войти / зарегистрироваться</button>
+            <a class="btn btn-cyan" data-support-link href="${settings.supportTelegram || 'https://t.me/whemmel'}" target="_blank" rel="noopener">Написать в поддержку</a>
+          </div>
+        </div>`;
+      $('openLockedAuth')?.addEventListener('click',()=>openAuthModal('Зарегистрируйся или войди, чтобы открыть каталог товаров.'));
+    }
 
     async function loadSettings(){
       const snap = await getDoc(doc(db,'site','settings'));
@@ -209,6 +238,8 @@
     }
 
     async function loadProducts(){
+      if(!currentUser){ renderLockedProducts(); return; }
+      document.querySelector('#products')?.classList.remove('catalog-locked');
       const q = query(collection(db,'products'), where('published','==',true));
       const snap = await getDocs(q);
       products = snap.docs.map(d=>({ id:d.id, ...d.data() })).sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
@@ -325,7 +356,8 @@
     $('year').textContent = new Date().getFullYear();
 
     renderAuthNav();
-    try { await loadSettings(); await loadProducts(); await loadFaq(); } catch(error){ console.error(error); showToast('Ошибка загрузки данных. Проверь Firebase rules.'); $('productsGrid').innerHTML='<div class="empty">Не удалось загрузить товары. Проверь Firebase и правила доступа.</div>'; }
+    renderLockedProducts();
+    try { await loadSettings(); await loadFaq(); } catch(error){ console.error(error); showToast('Ошибка загрузки данных. Проверь Firebase rules.'); }
   </script>
 </body>
 </html>
